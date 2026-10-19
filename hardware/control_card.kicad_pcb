@@ -23666,7 +23666,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25897"
+		(property "LCSC" "C137969"
 			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
@@ -23679,7 +23679,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "0402WGF4992TCE"
+		(property "MPN" "RC0402FR-0749K9L"
 			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
