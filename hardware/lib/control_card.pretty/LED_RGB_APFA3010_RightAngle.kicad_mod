@@ -1,0 +1,182 @@
+(footprint "LED_RGB_APFA3010_RightAngle"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Kingbright APFA3010LSEEZGKQBKC right-angle common-anode RGB LED, 3.0x1.5x1.0 mm (LCSC C5393554); lens toward -y")
+	(property "Reference" ""
+		(at 0 1.7 0)
+		(layer "F.SilkS")
+		(uuid "aa9a53b6-61dd-4cc1-bc36-abb4df6a55e2")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Value" "LED_RGB_APFA3010_RightAngle"
+		(at 0 2.4 0)
+		(layer "F.Fab")
+		(uuid "b8c4a7c3-e1f0-40e0-ad41-9fc0466203be")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "1d385263-0365-4b65-a9d9-1f3d87c40b23")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "55dfa4d5-2807-4d50-977f-cfbc7e0ff443")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_circle
+		(center 1.5 0.85)
+		(end 1.6 0.85)
+		(stroke
+			(width 0.2)
+			(type default)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "d8b34f58-d08a-4953-a85d-e48008805586")
+	)
+	(fp_line
+		(start -2.1 -1.35)
+		(end 2.1 -1.35)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "b90caed7-8117-4ff5-be21-d4dd7246baf9")
+	)
+	(fp_line
+		(start -2.1 0.95)
+		(end -2.1 -1.35)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "f54cc82c-be8d-4e8f-9778-6df0e51799a8")
+	)
+	(fp_line
+		(start 2.1 -1.35)
+		(end 2.1 0.95)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "078d3f08-5ac9-4303-9e4a-f2422b4c072f")
+	)
+	(fp_line
+		(start 2.1 0.95)
+		(end -2.1 0.95)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "8e013d3b-5600-4ed3-a940-b16291dcce6c")
+	)
+	(fp_line
+		(start -1.5 -0.25)
+		(end 1.5 -0.25)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "d4fe6830-6172-4689-9079-a51bb9be9eda")
+	)
+	(fp_line
+		(start -1.5 0.25)
+		(end -1.5 -0.25)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "8f2c10e1-99d9-4e29-9084-81a4b2cdda5a")
+	)
+	(fp_line
+		(start 1.5 -0.25)
+		(end 1.5 0.25)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "86b47192-d5e8-440e-805b-483242e05b53")
+	)
+	(fp_line
+		(start 1.5 0.25)
+		(end -1.5 0.25)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "6d220d3f-84fe-4eb2-bbe9-195d5e52ca64")
+	)
+	(fp_arc
+		(start -1 -0.25)
+		(mid 0 -1.25)
+		(end 1 -0.25)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "04a9ff86-d42d-493f-9d7b-9f4421ec2fc6")
+	)
+	(pad "1" smd rect
+		(at -1.5 0)
+		(size 1 0.9)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "e3b8a3de-c2e7-4ef1-8352-eee0906ad71c")
+	)
+	(pad "2" smd rect
+		(at 1.5 0)
+		(size 1 0.9)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "0edf8e60-d988-4a6b-bbbb-4dc53c003a9a")
+	)
+	(pad "3" smd rect
+		(at 0.4 0.45)
+		(size 0.4 0.8)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "eb16aea7-b97c-40d7-9667-c6885d2ea35d")
+	)
+	(pad "4" smd rect
+		(at -0.4 0.45)
+		(size 0.4 0.8)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "26f1454a-4159-4853-b928-6edf4474dd73")
+	)
+	(embedded_fonts no)
+)

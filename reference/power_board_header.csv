@@ -1,0 +1,51 @@
+card_pin,power_board_pin,signal,dir_from_fpga,power_board_load,u25_ball
+1,2,5V,power,,
+2,1,DGND,power,,
+3,4,PRI_DHB_HI,out,Si8274 DRV5 PWM (VDD1=5V),B9/B11 via 0R
+4,3,EPWM6A,out,,A11
+5,6,PRI_DHB_LO,out,Si8274 DRV5 NC1,B12
+6,5,EPWM5A,out,,A12
+7,8,CUK_CS,out,Si8661 ISO2 VI_D,B13
+8,7,HT_CS,out,Si8661 ISO1 VI_D,A13
+9,10,EPWM2A,out,Si8661 ISO2 VI_A,B14
+10,9,SYNCH_2,out,Si8661 ISO1 VI_C,A14
+11,12,EPWM2B,out,Si8661 ISO2 VI_B,A15
+12,11,HT_SDATA,in,Si8661 ISO1 VO_F,B16
+13,14,CUK_CLK,out,Si8661 ISO2 VI_E,C14
+14,13,SYNCH_1,out,Si8661 ISO1 VI_B,C16
+15,16,CUK_SDATA,in,Si8661 ISO2 VO_F,C15
+16,15,HT_CLK,out,Si8661 ISO1 VI_E,D16
+17,18,,spare,,D15
+18,17,GPIO_BYPASS_RLY,out,relay driver,F15
+19,20,,spare,,F16
+20,19,PFC_PWM1,out,IXDD609 DRV1,G15
+21,22,EPWM1A,out,,G16
+22,21,,spare,,J14
+23,24,RX,in,UART (also J4),J16
+24,23,,spare,,J15
+25,26,TX,out,UART (also J4),K16
+26,25,,spare,,K15
+27,28,,spare,,L16
+28,27,,spare,,L15
+29,30,,spare,,N14
+30,29,,spare,,N16
+31,32,,spare,,N15
+32,31,,spare,,P16
+33,34,,spare,,P15
+34,33,PFC_PWM2,out,IXDD609 DRV2,R16
+35,36,DGND,power,,
+36,35,DGND,power,,
+37,38,ADA6,analog,Cuk_cap_meas_raw,
+38,37,ADB6,analog,DHB_I_MEAS,
+39,40,ADA5,analog,AUX_MEAS,
+40,39,ADB5,analog,heater_cap_ad_meas,
+41,42,ADA4,analog,,
+42,41,ADB4,analog,DC_LINK_MEAS,
+43,44,ADA3,analog,PFC_I2_MEAS,
+44,43,ADB3,analog,PFC_I1_MEAS,
+45,46,ADA2,analog,,
+46,45,ADB2,analog,HEATER_I_MEAS,
+47,48,ADA1,analog,,
+48,47,ADB1,analog,VAC_MEAS,
+49,50,ADA0,analog,,
+50,49,ADB0,analog,,
