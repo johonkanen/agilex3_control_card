@@ -4168,7 +4168,7 @@
 				(justify left)
 			)
 		)
-		(property "LCSC" "C25105"
+		(property "LCSC" "C320843"
 			(at 104.14 177.8 0)
 			(hide yes)
 			(show_name no)
@@ -4180,7 +4180,7 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "0402WGF330JTCE"
+		(property "MPN" "RC-01W33R0FT"
 			(at 104.14 177.8 0)
 			(hide yes)
 			(show_name no)
@@ -4546,7 +4546,7 @@
 				(justify left)
 			)
 		)
-		(property "LCSC" "C25105"
+		(property "LCSC" "C320843"
 			(at 129.54 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -4558,7 +4558,7 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "0402WGF330JTCE"
+		(property "MPN" "RC-01W33R0FT"
 			(at 129.54 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -4828,7 +4828,7 @@
 				(justify left)
 			)
 		)
-		(property "LCSC" "C25105"
+		(property "LCSC" "C320843"
 			(at 104.14 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -4840,7 +4840,7 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "0402WGF330JTCE"
+		(property "MPN" "RC-01W33R0FT"
 			(at 104.14 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -5188,7 +5188,7 @@
 				(justify left)
 			)
 		)
-		(property "LCSC" "C25105"
+		(property "LCSC" "C320843"
 			(at 119.38 177.8 0)
 			(hide yes)
 			(show_name no)
@@ -5200,7 +5200,7 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "0402WGF330JTCE"
+		(property "MPN" "RC-01W33R0FT"
 			(at 119.38 177.8 0)
 			(hide yes)
 			(show_name no)
@@ -5686,7 +5686,7 @@
 				(justify left)
 			)
 		)
-		(property "LCSC" "C25105"
+		(property "LCSC" "C320843"
 			(at 119.38 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -5698,7 +5698,7 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "0402WGF330JTCE"
+		(property "MPN" "RC-01W33R0FT"
 			(at 119.38 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -6046,7 +6046,7 @@
 				(justify left)
 			)
 		)
-		(property "LCSC" "C25105"
+		(property "LCSC" "C320843"
 			(at 129.54 177.8 0)
 			(hide yes)
 			(show_name no)
@@ -6058,7 +6058,7 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "0402WGF330JTCE"
+		(property "MPN" "RC-01W33R0FT"
 			(at 129.54 177.8 0)
 			(hide yes)
 			(show_name no)

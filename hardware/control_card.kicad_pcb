@@ -1019,7 +1019,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25105"
+		(property "LCSC" "C320843"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -1032,7 +1032,7 @@
 				)
 			)
 		)
-		(property "MPN" "0402WGF330JTCE"
+		(property "MPN" "RC-01W33R0FT"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -6069,7 +6069,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25105"
+		(property "LCSC" "C320843"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -6082,7 +6082,7 @@
 				)
 			)
 		)
-		(property "MPN" "0402WGF330JTCE"
+		(property "MPN" "RC-01W33R0FT"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -15280,7 +15280,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25105"
+		(property "LCSC" "C320843"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -15293,7 +15293,7 @@
 				)
 			)
 		)
-		(property "MPN" "0402WGF330JTCE"
+		(property "MPN" "RC-01W33R0FT"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -23261,7 +23261,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25105"
+		(property "LCSC" "C320843"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -23275,7 +23275,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "0402WGF330JTCE"
+		(property "MPN" "RC-01W33R0FT"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -35200,7 +35200,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25105"
+		(property "LCSC" "C320843"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -35214,7 +35214,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "0402WGF330JTCE"
+		(property "MPN" "RC-01W33R0FT"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -37825,7 +37825,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C25105"
+		(property "LCSC" "C320843"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -37839,7 +37839,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "0402WGF330JTCE"
+		(property "MPN" "RC-01W33R0FT"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "B.Fab")
