@@ -40,7 +40,7 @@ From the scripted review and 3D renders (2026-10-17):
 
 Power (`docs/agilex3_requirements.md` has the FPGA rules):
 - [ ] Buck outputs:
-  - core: 0.6 × (1 + 49.9k/200k) = 0.750 V (A3CZ065 is −7S, so 0.75 V is right);
+  - core: 0.6 × (1 + 51k/200k) = 0.753 V (A3CZ065 is −7S, so 0.75 V is right);
   - 1.8 V: 200k/100k;
   - 3.3 V: 200k/44.2k = 3.31 V.
 - [ ] Core current: run the Power and Thermal Calculator on the 065 design. AP61302 is rated 3 A.

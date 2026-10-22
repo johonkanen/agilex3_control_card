@@ -105,7 +105,7 @@ Review before layout:
 - Decoupling values and counts on the FPGA power sheet are a first pass. Check them against Altera's PDN tool.
 - ADS7056 footprint: `Texas_UQFN-8_1.5x1.5mm_P0.5mm`. Check it against the RUG0008A land pattern.
 - HyperRAM CK# (B1) is left unconnected: the W958D8NBYA defaults to a single-ended clock (CR1[6] = 1), and its datasheet says CK# is then not used. RESET# has an internal pull-up; R24 (10k to +1V8) stays.
-- Core sense: the 49.9k/200k divider sits on VCCLSENSE/GNDSENSE, with 100R/10R local fallbacks to +0V75 and GND.
+- Core sense: the 51k/200k divider (0.753 V; was 49.9k, changed 2026-10-22 to a JLC basic part) sits on VCCLSENSE/GNDSENSE, with C77 100 pF C0G feed-forward across the 51k. 100R/10R local fallbacks to +0V75 and GND.
 - JTAG J2 pin order: TCK, TDI, TMS, TDO, GND. Change it freely for routing.
 
 ## Placement (first pass, generated)

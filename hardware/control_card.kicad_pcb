@@ -14110,7 +14110,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C301953"
+		(property "LCSC" "C113781"
 			(at 0 0 270)
 			(layer "F.Fab")
 			(hide yes)
@@ -14122,7 +14122,7 @@
 				)
 			)
 		)
-		(property "MPN" "0402CG681J500NT"
+		(property "MPN" "CC0402JRNPO9BN681"
 			(at 0 0 270)
 			(layer "F.Fab")
 			(hide yes)
@@ -23989,7 +23989,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "49k9"
+		(property "Value" "51k"
 			(at 0 -1.17 90)
 			(layer "B.Fab")
 			(uuid "ddab59f2-8989-46b9-bef3-db5f915a1c9b")
@@ -24038,7 +24038,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C137969"
+		(property "LCSC" "C25794"
 			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
@@ -24051,7 +24051,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "RC0402FR-0749K9L"
+		(property "MPN" "0402WGF5102TCE"
 			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
@@ -31077,7 +31077,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "120p"
+		(property "Value" "100p"
 			(at 0 -1.16 0)
 			(layer "B.Fab")
 			(uuid "cea97bf5-493a-4452-b00f-9599ef44dbdd")
@@ -31126,7 +31126,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C40059"
+		(property "LCSC" "C1546"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -31140,7 +31140,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "0402CG121J500NT"
+		(property "MPN" "0402CG101J500NT"
 			(at 0 0 180)
 			(unlocked yes)
 			(layer "B.Fab")
@@ -37581,7 +37581,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C301953"
+		(property "LCSC" "C113781"
 			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
@@ -37594,7 +37594,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "0402CG681J500NT"
+		(property "MPN" "CC0402JRNPO9BN681"
 			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)

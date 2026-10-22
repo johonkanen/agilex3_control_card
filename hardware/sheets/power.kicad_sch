@@ -5011,7 +5011,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "49k9"
+		(property "Value" "51k"
 			(at 96.52 39.37 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5058,7 +5058,7 @@
 				(justify left)
 			)
 		)
-		(property "LCSC" "C137969"
+		(property "LCSC" "C25794"
 			(at 93.98 38.1 0)
 			(hide yes)
 			(show_name no)
@@ -5070,7 +5070,7 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "RC0402FR-0749K9L"
+		(property "MPN" "0402WGF5102TCE"
 			(at 93.98 38.1 0)
 			(hide yes)
 			(show_name no)
@@ -10422,7 +10422,7 @@
 			)
 		)
 	)
-		(symbol
+	(symbol
 		(lib_id "Device:C")
 		(at 63.5 215.9 0)
 		(unit 1)
@@ -10444,7 +10444,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "120p"
+		(property "Value" "100p"
 			(at 66.04 217.17 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10491,7 +10491,7 @@
 				(justify left)
 			)
 		)
-		(property "LCSC" "C40059"
+		(property "LCSC" "C1546"
 			(at 63.5 215.9 0)
 			(hide yes)
 			(show_name no)
@@ -10503,7 +10503,7 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "0402CG121J500NT"
+		(property "MPN" "0402CG101J500NT"
 			(at 63.5 215.9 0)
 			(hide yes)
 			(show_name no)

@@ -5253,7 +5253,7 @@
 			)
 		)
 	)
-		(symbol
+	(symbol
 		(lib_id "Device:R")
 		(at 139.7 50.8 0)
 		(unit 1)
@@ -5407,7 +5407,7 @@
 			)
 		)
 	)
-		(symbol
+	(symbol
 		(lib_id "Device:R")
 		(at 152.4 50.8 0)
 		(unit 1)

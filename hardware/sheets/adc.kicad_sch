@@ -3928,7 +3928,7 @@
 				(justify left)
 			)
 		)
-		(property "LCSC" "C301953"
+		(property "LCSC" "C113781"
 			(at 162.56 127 0)
 			(hide yes)
 			(show_name no)
@@ -3940,7 +3940,7 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "0402CG681J500NT"
+		(property "MPN" "CC0402JRNPO9BN681"
 			(at 162.56 127 0)
 			(hide yes)
 			(show_name no)
@@ -5806,7 +5806,7 @@
 				(justify left)
 			)
 		)
-		(property "LCSC" "C301953"
+		(property "LCSC" "C113781"
 			(at 162.56 38.1 0)
 			(hide yes)
 			(show_name no)
@@ -5818,7 +5818,7 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "0402CG681J500NT"
+		(property "MPN" "CC0402JRNPO9BN681"
 			(at 162.56 38.1 0)
 			(hide yes)
 			(show_name no)
@@ -6877,7 +6877,7 @@
 			)
 		)
 	)
-		(symbol
+	(symbol
 		(lib_id "Device:C")
 		(at 63.5 215.9 0)
 		(unit 1)
@@ -7031,7 +7031,7 @@
 			)
 		)
 	)
-		(symbol
+	(symbol
 		(lib_id "Device:C")
 		(at 76.2 215.9 0)
 		(unit 1)

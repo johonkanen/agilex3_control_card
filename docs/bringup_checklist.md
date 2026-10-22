@@ -36,7 +36,7 @@ order and stop at the first failure. Record every measurement in the log at the 
 |---|---|---|---|---|
 | +5V | J1 pin 1 | 5.0 V | C14/C15 pin 1 | input |
 | +3V3A | U6 TLV75533 from +5V, always enabled | 3.30 V | U6 pin 5, C13 pin 1 | immediately with +5V |
-| +0V75 (core) | U2 AP61302 buck, EN tied to +5V | 0.750 V (0.6 V × (1 + R1 49.9k / R2 200k)) | C2/C3 pin 1, L1 pad 2 | 1st |
+| +0V75 (core) | U2 AP61302 buck, EN tied to +5V | 0.753 V (0.6 V × (1 + R1 51k / R2 200k)) | C2/C3 pin 1, L1 pad 2 | 1st |
 | PG_0V75 | U2 pin 6, 100k pull-up R5 to +5V | → ~5 V when the core rail is good | R5 pin 2 | after +0V75 |
 | +1V8 | U3 AP61102 buck, EN = PG_0V75 | 1.800 V (0.6 × (1 + 200k/100k)) | C6 pin 1, L2 pad 2 | 2nd |
 | PG_1V8 | U3 pin 6, 100k pull-up R8 to +5V | → ~5 V | R8 pin 2 | after +1V8 |
