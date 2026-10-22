@@ -5248,7 +5248,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "22p"
+		(property "Value" "33p"
 			(at 124.46 74.93 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5295,7 +5295,7 @@
 				(justify left)
 			)
 		)
-		(property "LCSC" "C1555"
+		(property "LCSC" "C1562"
 			(at 121.92 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -5307,7 +5307,7 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "0402CG220J500NT"
+		(property "MPN" "0402CG330J500NT"
 			(at 121.92 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -8140,7 +8140,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "22p"
+		(property "Value" "33p"
 			(at 124.46 110.49 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8187,7 +8187,7 @@
 				(justify left)
 			)
 		)
-		(property "LCSC" "C1555"
+		(property "LCSC" "C1562"
 			(at 121.92 109.22 0)
 			(hide yes)
 			(show_name no)
@@ -8199,7 +8199,7 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "0402CG220J500NT"
+		(property "MPN" "0402CG330J500NT"
 			(at 121.92 109.22 0)
 			(hide yes)
 			(show_name no)
@@ -10421,5 +10421,146 @@
 				)
 			)
 		)
+	)
+		(symbol
+		(lib_id "Device:C")
+		(at 63.5 215.9 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "941a074d-c466-4574-9297-8a86f1b05bb6")
+		(property "Reference" "C77"
+			(at 66.04 214.63 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "120p"
+			(at 66.04 217.17 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 63.5 215.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 63.5 215.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" "Feed-forward"
+			(at 63.5 215.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "LCSC" "C40059"
+			(at 63.5 215.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "MPN" "0402CG121J500NT"
+			(at 63.5 215.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "1"
+			(uuid "80136b83-4add-4a98-acc4-f901ba14ca72")
+		)
+		(pin "2"
+			(uuid "4b595d25-13a3-42c6-9ea1-239f5a8c9f3b")
+		)
+		(instances
+			(project "control_card"
+				(path "/02cf0cd1-c66b-5c4c-858e-ca84c1bbaba4/affdd0cf-ed48-5605-8b8d-7bdc9d18f6df"
+					(reference "C77")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "VCC_SENSE_P"
+		(shape passive)
+		(at 63.5 212.09 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f4996b7d-810a-4b54-b950-34ee7aba4c4f")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 63.5 212.09 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(label "FB_0V75"
+		(at 63.5 219.71 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c9da5ffa-9eac-4f00-8813-292f4c94bbb5")
 	)
 )
