@@ -20,3 +20,9 @@
 (rule "jlc_pth_hole_to_hole"
 	(condition "A.Type == 'Pad' && A.Pad_Type == 'Through-hole' && B.Type == 'Pad' && B.Pad_Type == 'Through-hole'")
 	(constraint hole_to_hole (min 0.45mm)))
+
+# HyperRAM: every HR_* net except the clock matched to 10.8 mm (the tuning tool aims for opt). HR_CK is left out:
+# the controller phase-shifts it anyway
+(rule "hyperram_length"
+	(condition "A.NetName == 'HR_*' && A.NetName != 'HR_CK'")
+	(constraint length (min 10.7mm) (opt 10.8mm) (max 10.9mm)))
