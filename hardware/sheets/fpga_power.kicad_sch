@@ -17848,7 +17848,7 @@
 				(justify left)
 			)
 		)
-		(property "LCSC" "C6119831"
+		(property "LCSC" "C140782"
 			(at 35.56 276.86 0)
 			(hide yes)
 			(show_name no)
@@ -17860,7 +17860,7 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "CGA0603X5R476M6R3JT"
+		(property "MPN" "GRM188R60J476ME15D"
 			(at 35.56 276.86 0)
 			(hide yes)
 			(show_name no)
@@ -18568,7 +18568,7 @@
 				(justify left)
 			)
 		)
-		(property "LCSC" "C335103"
+		(property "LCSC" "C2880368"
 			(at 78.74 200.66 0)
 			(hide yes)
 			(show_name no)
@@ -18580,7 +18580,7 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "GRM035R60J475ME15D"
+		(property "MPN" "JDK063BBJ475MV-AT"
 			(at 78.74 200.66 0)
 			(hide yes)
 			(show_name no)
@@ -18928,7 +18928,7 @@
 				(justify left)
 			)
 		)
-		(property "LCSC" "C335103"
+		(property "LCSC" "C2880368"
 			(at 104.14 200.66 0)
 			(hide yes)
 			(show_name no)
@@ -18940,7 +18940,7 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "GRM035R60J475ME15D"
+		(property "MPN" "JDK063BBJ475MV-AT"
 			(at 104.14 200.66 0)
 			(hide yes)
 			(show_name no)
@@ -20461,7 +20461,7 @@
 				(justify left)
 			)
 		)
-		(property "LCSC" "C335103"
+		(property "LCSC" "C2880368"
 			(at 40.64 251.46 0)
 			(hide yes)
 			(show_name no)
@@ -20473,7 +20473,7 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "GRM035R60J475ME15D"
+		(property "MPN" "JDK063BBJ475MV-AT"
 			(at 40.64 251.46 0)
 			(hide yes)
 			(show_name no)
@@ -23794,7 +23794,7 @@
 				(justify left)
 			)
 		)
-		(property "LCSC" "C6119831"
+		(property "LCSC" "C140782"
 			(at 134.62 276.86 0)
 			(hide yes)
 			(show_name no)
@@ -23806,7 +23806,7 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "CGA0603X5R476M6R3JT"
+		(property "MPN" "GRM188R60J476ME15D"
 			(at 134.62 276.86 0)
 			(hide yes)
 			(show_name no)
@@ -24514,7 +24514,7 @@
 				(justify left)
 			)
 		)
-		(property "LCSC" "C6119831"
+		(property "LCSC" "C140782"
 			(at 101.6 276.86 0)
 			(hide yes)
 			(show_name no)
@@ -24526,7 +24526,7 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "CGA0603X5R476M6R3JT"
+		(property "MPN" "GRM188R60J476ME15D"
 			(at 101.6 276.86 0)
 			(hide yes)
 			(show_name no)
@@ -24634,7 +24634,7 @@
 				(justify left)
 			)
 		)
-		(property "LCSC" "C335103"
+		(property "LCSC" "C2880368"
 			(at 53.34 226.06 0)
 			(hide yes)
 			(show_name no)
@@ -24646,7 +24646,7 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "GRM035R60J475ME15D"
+		(property "MPN" "JDK063BBJ475MV-AT"
 			(at 53.34 226.06 0)
 			(hide yes)
 			(show_name no)
@@ -24874,7 +24874,7 @@
 				(justify left)
 			)
 		)
-		(property "LCSC" "C335103"
+		(property "LCSC" "C2880368"
 			(at 40.64 226.06 0)
 			(hide yes)
 			(show_name no)
@@ -24886,7 +24886,7 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "GRM035R60J475ME15D"
+		(property "MPN" "JDK063BBJ475MV-AT"
 			(at 40.64 226.06 0)
 			(hide yes)
 			(show_name no)
@@ -25114,7 +25114,7 @@
 				(justify left)
 			)
 		)
-		(property "LCSC" "C6119831"
+		(property "LCSC" "C140782"
 			(at 68.58 276.86 0)
 			(hide yes)
 			(show_name no)
@@ -25126,7 +25126,7 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "CGA0603X5R476M6R3JT"
+		(property "MPN" "GRM188R60J476ME15D"
 			(at 68.58 276.86 0)
 			(hide yes)
 			(show_name no)
@@ -27127,7 +27127,7 @@
 				(justify left)
 			)
 		)
-		(property "LCSC" "C335103"
+		(property "LCSC" "C2880368"
 			(at 91.44 200.66 0)
 			(hide yes)
 			(show_name no)
@@ -27139,7 +27139,7 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "GRM035R60J475ME15D"
+		(property "MPN" "JDK063BBJ475MV-AT"
 			(at 91.44 200.66 0)
 			(hide yes)
 			(show_name no)
