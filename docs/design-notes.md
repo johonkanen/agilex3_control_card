@@ -299,7 +299,7 @@ Result (also the FPGA channel table, in `reference/mux_assignment.csv`):
   - Each dropped net then gets one more try with all other routes as obstacles.
   - **Rip-up:** a net that still fails but routes on its own takes that path. The nets in its way are ripped up and rerouted after it. The change is kept only if they all route again. This is how PRI_DHB_LO gets out past CUK_CS.
   - The run takes about 10 minutes.
-- **J1 footprint:** a project copy, `control_card:PinHeader_2x25_P1.27mm_Horizontal_U25`, with U25's 0.8128 mm pads on 0.5588 mm drills (0.032/0.022 in, from the U25 Gerbers). The stock 1.0/0.65 mm pads leave 0.27 mm between pins. These leave 0.46 mm, so a 0.1 mm track reaches J1's inner, even-numbered row between the outer-row pins with 0.18 mm clearance each side. The annular ring is 0.127 mm, as on U25.
+- **J1 footprint:** a project copy, `control_card:PinHeader_2x25_P1.27mm_Horizontal_U25`, with U25's 0.8128 mm pads on 0.5588 mm drills (0.032/0.022 in, from the U25 Gerbers). The stock 1.0/0.65 mm pads leave 0.27 mm between pins. These leave 0.46 mm, so a 0.1 mm track reaches J1's inner, even-numbered row between the outer-row pins with 0.18 mm clearance each side. The annular ring was 0.127 mm, as on U25; on 2026-10-22 the pads were enlarged to 0.9 mm (0.17 mm ring) because JLC's multilayer minimum is 0.15 mm. Tracks between the pins still clear: the closest is 0.109 mm from a pad, and the hole-to-track minimum is 0.28 mm.
 - **Result:** 57 of the 79 nets are routed, and copper DRC is clean. With the stock J1 pads it was 46, and 55 before the ball swaps and rip-up.
 - **Left for the via pass:**
   - The nets that cross another net or would need a detour over the limit.

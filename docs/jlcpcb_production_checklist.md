@@ -64,7 +64,7 @@ The numbers below are what the board uses, measured with KiCad's Python on the l
 | Min track width / spacing | 0.09 mm rule, 0.1 mm the narrowest used (853 segments) / 0.1 mm | multilayer min trace/space |
 | Vias (diameter / drill), count | 0.25/0.15 × 217 (216 of them in BGA or 0201 pads), 0.3/0.15 × 73, 0.35/0.2 × 37, 0.45/0.25 × 27 | min via 0.15 mm drill / 0.25 mm diameter for multilayer |
 | Via-in-pad | 267 vias sit in SMD pads | needs **epoxy-filled and capped vias (POFV)**: free on 6+ layers |
-| Plated holes | 0.559 mm × 50 (J1, 0.813 mm pads), 1.0 mm × 5 (J2, 1.7 mm pads) | min PTH and annular ring |
+| Plated holes | 0.559 mm × 50 (J1, 0.9 mm pads: 0.17 mm annular ring), 1.0 mm × 5 (J2, 1.7 mm pads) | min PTH and annular ring |
 | Drill tool sizes | 0.15, 0.20, 0.25, 0.559, 1.0 mm; no NPTH | |
 | Copper to board edge | ≥ 0.3 mm rule | routed-edge clearance |
 | BGA | 0.65 mm minimum ball spacing (U1), 0.30 mm pads; 1.0 mm (U7, U9) | min BGA pad and pitch |
