@@ -56313,14 +56313,6 @@
 		(uuid "4052dea4-4c65-4d09-b029-2cbc00c5b493")
 	)
 	(segment
-		(start 90.75 104.14)
-		(end 90.4244 104.14)
-		(width 0.15)
-		(layer "B.Cu")
-		(net "/Power/PG_1V8")
-		(uuid "41acf4da-4f7f-435b-8489-63d3d9f25d45")
-	)
-	(segment
 		(start 90.95 103.369999)
 		(end 83.6 103.369999)
 		(width 0.15)
