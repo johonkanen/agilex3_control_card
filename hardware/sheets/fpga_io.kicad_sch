@@ -8117,7 +8117,7 @@
 		(uuid "1389479a-f01a-5d9b-b8ef-66b9c45ef3a1")
 	)
 	(no_connect
-		(at 449.58 40.64)
+		(at 342.9 63.5)
 		(uuid "13a72349-38f2-5c35-9791-b3ca6e00fd72")
 	)
 	(no_connect
@@ -8153,7 +8153,7 @@
 		(uuid "1d2b4e15-db5e-5d67-9beb-b852836cfe0b")
 	)
 	(no_connect
-		(at 449.58 83.82)
+		(at 342.9 48.26)
 		(uuid "211ee2bb-52a1-58b6-8479-0e44253e416c")
 	)
 	(no_connect
@@ -8185,7 +8185,7 @@
 		(uuid "26ae093d-adbd-40b8-9898-f75f465a5873")
 	)
 	(no_connect
-		(at 449.58 76.2)
+		(at 342.9 45.72)
 		(uuid "288720bd-3ef9-5ab2-9e7b-3a04c5882ae5")
 	)
 	(no_connect
@@ -8297,7 +8297,7 @@
 		(uuid "5938736e-2641-5cf2-8a16-3ec77aacba39")
 	)
 	(no_connect
-		(at 449.58 63.5)
+		(at 342.9 60.96)
 		(uuid "597baf1b-83f3-550e-9bb9-75bb29579225")
 	)
 	(no_connect
@@ -8361,7 +8361,7 @@
 		(uuid "71b37ae3-792b-5e71-8499-af08b4a396a7")
 	)
 	(no_connect
-		(at 449.58 50.8)
+		(at 342.9 50.8)
 		(uuid "72921307-eddc-5be6-882f-e144050a5041")
 	)
 	(no_connect
@@ -8381,7 +8381,7 @@
 		(uuid "77528579-e101-5392-af11-364acac5de37")
 	)
 	(no_connect
-		(at 449.58 73.66)
+		(at 342.9 55.88)
 		(uuid "779b4be1-2a86-588e-b7d8-3082122c20fb")
 	)
 	(no_connect
@@ -8397,11 +8397,11 @@
 		(uuid "82c271c1-d88d-5737-968c-67b740f18b1c")
 	)
 	(no_connect
-		(at 449.58 68.58)
+		(at 342.9 43.18)
 		(uuid "88710e15-6a0d-50bc-b369-6d354db1960f")
 	)
 	(no_connect
-		(at 449.58 78.74)
+		(at 342.9 40.64)
 		(uuid "8c975202-1746-5a2c-b0c8-d655075de278")
 	)
 	(no_connect
@@ -8581,7 +8581,7 @@
 		(uuid "d239f023-1c7a-5099-84f8-f47c33cbf313")
 	)
 	(no_connect
-		(at 449.58 66.04)
+		(at 342.9 66.04)
 		(uuid "d3593823-3666-511e-b02d-ca59da7204d1")
 	)
 	(no_connect
@@ -8589,11 +8589,11 @@
 		(uuid "d3c22737-e19c-5fba-8b0b-7ee7a2d2d667")
 	)
 	(no_connect
-		(at 449.58 48.26)
+		(at 342.9 58.42)
 		(uuid "d6afc2aa-241c-5e27-9090-17a87066a064")
 	)
 	(no_connect
-		(at 449.58 45.72)
+		(at 342.9 53.34)
 		(uuid "d8d65f45-01e2-50db-bd5f-9e05082b5453")
 	)
 	(no_connect
@@ -8629,7 +8629,7 @@
 		(uuid "e42dffdd-9e29-5070-9bf9-38a1598a716c")
 	)
 	(no_connect
-		(at 449.58 43.18)
+		(at 342.9 76.2)
 		(uuid "e5ab6df1-297c-5dd3-825e-f08e5cb7e736")
 	)
 	(no_connect
@@ -8710,7 +8710,7 @@
 	)
 	(wire
 		(pts
-			(xy 340.36 63.5) (xy 342.9 63.5)
+			(xy 447.04 40.64) (xy 449.58 40.64)
 		)
 		(stroke
 			(width 0)
@@ -8730,7 +8730,7 @@
 	)
 	(wire
 		(pts
-			(xy 340.36 40.64) (xy 342.9 40.64)
+			(xy 447.04 78.74) (xy 449.58 78.74)
 		)
 		(stroke
 			(width 0)
@@ -8750,7 +8750,7 @@
 	)
 	(wire
 		(pts
-			(xy 340.36 55.88) (xy 342.9 55.88)
+			(xy 447.04 73.66) (xy 449.58 73.66)
 		)
 		(stroke
 			(width 0)
@@ -8940,7 +8940,7 @@
 	)
 	(wire
 		(pts
-			(xy 342.9 60.96) (xy 340.36 60.96)
+			(xy 449.58 63.5) (xy 447.04 63.5)
 		)
 		(stroke
 			(width 0)
@@ -8950,7 +8950,7 @@
 	)
 	(wire
 		(pts
-			(xy 342.9 53.34) (xy 340.36 53.34)
+			(xy 449.58 45.72) (xy 447.04 45.72)
 		)
 		(stroke
 			(width 0)
@@ -8980,7 +8980,7 @@
 	)
 	(wire
 		(pts
-			(xy 340.36 48.26) (xy 342.9 48.26)
+			(xy 447.04 83.82) (xy 449.58 83.82)
 		)
 		(stroke
 			(width 0)
@@ -9030,7 +9030,7 @@
 	)
 	(wire
 		(pts
-			(xy 342.9 58.42) (xy 340.36 58.42)
+			(xy 449.58 48.26) (xy 447.04 48.26)
 		)
 		(stroke
 			(width 0)
@@ -9070,7 +9070,7 @@
 	)
 	(wire
 		(pts
-			(xy 342.9 50.8) (xy 340.36 50.8)
+			(xy 449.58 50.8) (xy 447.04 50.8)
 		)
 		(stroke
 			(width 0)
@@ -9190,7 +9190,7 @@
 	)
 	(wire
 		(pts
-			(xy 342.9 76.2) (xy 340.36 76.2)
+			(xy 449.58 43.18) (xy 447.04 43.18)
 		)
 		(stroke
 			(width 0)
@@ -9260,7 +9260,7 @@
 	)
 	(wire
 		(pts
-			(xy 342.9 45.72) (xy 340.36 45.72)
+			(xy 449.58 76.2) (xy 447.04 76.2)
 		)
 		(stroke
 			(width 0)
@@ -9280,7 +9280,7 @@
 	)
 	(wire
 		(pts
-			(xy 340.36 43.18) (xy 342.9 43.18)
+			(xy 447.04 68.58) (xy 449.58 68.58)
 		)
 		(stroke
 			(width 0)
@@ -9310,7 +9310,7 @@
 	)
 	(wire
 		(pts
-			(xy 342.9 66.04) (xy 340.36 66.04)
+			(xy 449.58 66.04) (xy 447.04 66.04)
 		)
 		(stroke
 			(width 0)
@@ -9422,7 +9422,7 @@
 	)
 	(global_label "HR_DQ3"
 		(shape passive)
-		(at 340.36 50.8 180)
+		(at 447.04 50.8 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -9432,7 +9432,7 @@
 		)
 		(uuid "0f37bbb6-7c03-53ea-ac11-2d8fcac31008")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 340.36 50.8 0)
+			(at 447.04 50.8 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9468,7 +9468,7 @@
 	)
 	(global_label "HR_DQ5"
 		(shape passive)
-		(at 340.36 45.72 180)
+		(at 447.04 76.2 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -9478,7 +9478,7 @@
 		)
 		(uuid "1546ac1e-b9c2-5785-a811-7739152c17ba")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 340.36 45.72 0)
+			(at 447.04 76.2 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9560,7 +9560,7 @@
 	)
 	(global_label "HR_DQ2"
 		(shape passive)
-		(at 340.36 60.96 180)
+		(at 447.04 63.5 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -9570,7 +9570,7 @@
 		)
 		(uuid "234385d0-dede-5394-86af-8481d2c84e52")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 340.36 60.96 0)
+			(at 447.04 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9652,7 +9652,7 @@
 	)
 	(global_label "HR_DQ7"
 		(shape passive)
-		(at 340.36 48.26 180)
+		(at 447.04 83.82 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -9662,7 +9662,7 @@
 		)
 		(uuid "2e8789a2-7afb-5fa8-a50e-01b0acdf29a7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 340.36 48.26 0)
+			(at 447.04 83.82 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9836,7 +9836,7 @@
 	)
 	(global_label "HR_DQ1"
 		(shape passive)
-		(at 340.36 55.88 180)
+		(at 447.04 73.66 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -9846,7 +9846,7 @@
 		)
 		(uuid "526507ff-c686-5632-b27a-6b67e60c04c3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 340.36 55.88 0)
+			(at 447.04 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9928,7 +9928,7 @@
 	)
 	(global_label "HR_CS_N"
 		(shape passive)
-		(at 340.36 76.2 180)
+		(at 447.04 43.18 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -9938,7 +9938,7 @@
 		)
 		(uuid "600b701a-d8db-55d0-b313-31bd3096db1d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 340.36 76.2 0)
+			(at 447.04 43.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9974,7 +9974,7 @@
 	)
 	(global_label "HR_DQ6"
 		(shape passive)
-		(at 340.36 40.64 180)
+		(at 447.04 78.74 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -9984,7 +9984,7 @@
 		)
 		(uuid "7040905c-4bd8-564c-9e9a-6661b5c3c271")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 340.36 40.64 0)
+			(at 447.04 78.74 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10066,7 +10066,7 @@
 	)
 	(global_label "HR_RWDS"
 		(shape passive)
-		(at 340.36 58.42 180)
+		(at 447.04 48.26 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -10076,7 +10076,7 @@
 		)
 		(uuid "80ea18ae-3e19-5040-a5fa-39ba9053d202")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 340.36 58.42 0)
+			(at 447.04 48.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10112,7 +10112,7 @@
 	)
 	(global_label "HR_CK"
 		(shape passive)
-		(at 340.36 66.04 180)
+		(at 447.04 66.04 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -10122,7 +10122,7 @@
 		)
 		(uuid "8ed4416f-ed13-5118-90bc-f34bb9b3516f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 340.36 66.04 0)
+			(at 447.04 66.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10365,7 +10365,7 @@
 	)
 	(global_label "HR_RESET_N"
 		(shape passive)
-		(at 340.36 63.5 180)
+		(at 447.04 40.64 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -10375,7 +10375,7 @@
 		)
 		(uuid "c2fe5729-52f9-580c-bf01-57abfcee06ff")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 340.36 63.5 0)
+			(at 447.04 40.64 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10434,7 +10434,7 @@
 	)
 	(global_label "HR_DQ0"
 		(shape passive)
-		(at 340.36 43.18 180)
+		(at 447.04 68.58 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -10444,7 +10444,7 @@
 		)
 		(uuid "c539522b-c4f6-5752-b6ca-25adc4289387")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 340.36 43.18 0)
+			(at 447.04 68.58 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10503,7 +10503,7 @@
 	)
 	(global_label "HR_DQ4"
 		(shape passive)
-		(at 340.36 53.34 180)
+		(at 447.04 45.72 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -10513,7 +10513,7 @@
 		)
 		(uuid "d95ad267-ceb2-59c9-aacc-90873c6ebb99")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 340.36 53.34 0)
+			(at 447.04 45.72 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)

@@ -44,7 +44,7 @@ Power (`docs/agilex3_requirements.md` has the FPGA rules):
   - 1.8 V: 200k/100k;
   - 3.3 V: 200k/44.2k = 3.31 V.
 - [ ] Core current: run the Power and Thermal Calculator on the 065 design. AP61302 is rated 3 A.
-- [ ] Power-up chain: 0.75 V PG → 1.8 V EN → 1.8 V PG → 3.3 V EN; the 1.2 V and bank-6C 1.8 V LDOs follow +3V3 (group 2B).
+- [ ] Power-up chain: 0.75 V PG → 1.8 V EN → 1.8 V PG → 3.3 V EN; the 1.2 V and banks-6C/6D 1.8 V LDOs follow +3V3 (group 2B).
 - [ ] Bead filters (BLM18PG121SN1D + 47 µF + 1 µF) on VCCPLLDIG_SDM, VCCPLL_SDM, VCCADC, VCCRCORE, plus the oscillator.
 - [ ] Analog 3.3 V: TLV75533 from +5V, feeding the muxes, buffers and ADC AVDD.
 
@@ -57,7 +57,7 @@ FPGA and configuration:
 - [ ] Clock: 100 MHz OT3225100MJBA4SL, R25 33 Ω at the source, short branches to D18 (PLLREFCLK1, bank 6D at 1.8 V) and BB44 (OSC_CLK_1).
 
 Memory and I/O:
-- [ ] HyperRAM W958D8NBYA5I on +1V8_HR / bank 6C; HR_RESET_N 10 k pull-up; CK# unused (single-ended clock).
+- [ ] HyperRAM W958D8NBYA5I on +1V8_HR / bank 6D; HR_RESET_N 10 k pull-up; CK# unused (single-ended clock).
 - [ ] ADC chains: mux → OPA365 → 33 Ω/680 pF C0G → ADS7056; AVDD 4.7 µF + 100 nF; CS/SCLK/SDO 33 Ω.
 - [ ] **J1 pinout vs the power board** (mirrored mapping, `reference/power_board_header.csv`): pin 1 = 5 V, GND pins, every
       signal's direction.
@@ -65,7 +65,7 @@ Memory and I/O:
       `Cuk_cap_meas_raw`. Those J1 analog pins may be unconnected on the power board.
 - [ ] LEDs: common anode to 3.3 V, cathodes through 100 Ω, so active low.
 - [ ] FPGA build: Quartus test build with `reference/pin_assignment.csv`
-      - bank 6C 1.8-V LVCMOS, other banks 3.3-V LVCMOS;
+      - banks 6C and 6D 1.8-V LVCMOS, other banks 3.3-V LVCMOS;
       - Active Serial x4, `OSC_CLK_1_100MHZ`, `AS_FREQ_100MHZ`;
       - then compare the Fitter's `.pin` file with the netlist (Claude can script this).
 

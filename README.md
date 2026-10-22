@@ -15,7 +15,7 @@ connections are being routed by hand. The board has not been fabricated or teste
 
 - **FPGA:** Agilex 3 A3CZ065, 65k logic elements, speed grade −7, extended temperature. 63 I/O signals, mostly on 3.3 V HVIO
   banks with no level shifters.
-- **Memory:** 32 MB HyperRAM (Winbond W958D8NBYA5I, 1.8 V) on bank 6C. The W959D8NFYA5I (64 MB) fits the same footprint.
+- **Memory:** 32 MB HyperRAM (Winbond W958D8NBYA5I, 1.8 V) on bank 6D. The W959D8NFYA5I (64 MB) fits the same footprint.
 - **Configuration:** Active Serial x4 from a 1.8 V QSPI flash (Micron MT25QU256). JTAG on a 5-pin 2.54 mm header,
   shifted from 3.3 V to 1.8 V by an SN74AVC4T774.
 - **Clock:** 100 MHz 1.8 V oscillator into PLLREFCLK1 (D18) and the configuration clock input OSC_CLK_1.

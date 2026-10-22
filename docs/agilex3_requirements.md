@@ -30,7 +30,7 @@ the guideline values.
 | VCCRCORE | 1.2 V | may share VCCIO_PIO when that is 1.2 V | 2B | +1V2_RCORE (filtered, from TLV75512) |
 | VCCIO_PIO_SDM | | to VCCRCORE unless Avalon-ST x16 configuration is used | 2B | +1V2 |
 | VCCIO_PIO_3A_T (HSIO) | 1.0–1.3 V | one of 1.0/1.05/1.1/1.2/1.3 V | 2B | +1V2 (bank unused) |
-| VCCIO_HVIO_6A…6H | 1.8, 2.5 or 3.3 V | own regulator ("Isolate") | 2B | +3V3; 6C on its own 1.8 V LDO (`+1V8_HR`) |
+| VCCIO_HVIO_6A…6H | 1.8, 2.5 or 3.3 V | own regulator ("Isolate") | 2B | +3V3; 6C and 6D on their own 1.8 V LDO (`+1V8_HR`) |
 | VCCLSENSE / GNDSENSE | | differential remote sense to the core regulator | | VCC_SENSE_P/N pair on L6 |
 
 Decoupling (worksheet PWR_CAP for A3C065 in B18A):
@@ -47,7 +47,7 @@ The card puts 1 µF and 4.7 µF 0201s on supply/ground ball pairs, and bulk caps
 | Bank | Allowed I/O voltage | Notes | This card |
 |---|---|---|---|
 | **SDM** (JTAG, nCONFIG, nSTATUS, MSEL/AS pins, OSC_CLK_1, SDM_IO) | **1.8 V only** | VCCIO_SDM is 1.8 V; nothing at 3.3 V may drive these pins | 1.8 V QSPI flash; JTAG header through an SN74AVC4T774 level shifter |
-| HVIO 6A–6H (20 pins each) | 1.8 / 2.5 / 3.3 V LVCMOS/LVTTL, one voltage per bank | a pin can't take an input above its bank's VCCIO; HVIO is single-ended only | 6C = 1.8 V (HyperRAM), 6D = 1.8 V (CLK100M only); other banks 3.3 V |
+| HVIO 6A–6H (20 pins each) | 1.8 / 2.5 / 3.3 V LVCMOS/LVTTL, one voltage per bank | a pin can't take an input above its bank's VCCIO; HVIO is single-ended only | 6D = 1.8 V (HyperRAM and CLK100M), 6C = 1.8 V (unused since 2026-10-22); other banks 3.3 V |
 | HSIO 3A_T (48 pins) | 1.0 / 1.05 / 1.1 / 1.2 / 1.3 V | the LVDS / high-speed I/O | unused |
 | HPS I/O | 1.8 V | none on Z-spec parts | — |
 
