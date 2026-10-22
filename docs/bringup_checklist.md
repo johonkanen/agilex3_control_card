@@ -49,7 +49,8 @@ order and stop at the first failure. Record every measurement in the log at the 
 | +1V8_OSC | FB5 from +1V8_HR | ≈1.80 V | FB5 pin 2, C54 pin 1 | with +1V8_HR |
 
 - **Core regulator sense:** the core regulator senses the voltage at the FPGA balls (VCC_SENSE_P at AH33, VCC_SENSE_N at
-  AL33), through R1/R2. R3 (100 Ω) and R4 (10 Ω) give a local fallback path if the sense lines are open.
+  AL33), through R1/R2 (51k/200k). C77 (100 pF C0G) across R1 is the feed-forward capacitor the AP61302 requires. R3 (100 Ω)
+  and R4 (10 Ω) give a local fallback path if the sense lines are open.
 - **Tolerances:** use ±3 % as the screening limit. The exact Agilex 3 limits are in the Device Data Sheet (848370); check
   VCC/VCCP (0.75 V for −7S) against it before running heavy designs.
 
@@ -85,8 +86,9 @@ order and stop at the first failure. Record every measurement in the log at the 
   - no tombstoned 0201s under the BGA (bottom side, C21–C46, C66–C76);
   - BGAs sit flat. If JLC supplied X-ray images of U1/U7/U9, look for voids and bridges.
 - [ ] **Hand-soldered J1 and J2:** no bridges between the 1.27 mm-pitch J1 pins. J1 pin 1 is the square pad.
-- [ ] **Bottom-side parts present** (105 of the 141 assembled parts are on the bottom). Compare with the 3D render
-  `docs/img/board_bottom.png` (made before final routing, so the copper differs, but the parts don't).
+- [ ] **Bottom-side parts present** (109 of the 146 assembled parts are on the bottom). Compare with the 3D renders
+  `docs/img/board_top.png` and `docs/img/board_bottom.png` (final design; U1, U7 and U9 show as bare pads because their
+  footprints have no 3D model, and J1/J2 are drawn although they're soldered by hand).
 
 ## 2. Resistance checks (no power)
 
@@ -212,6 +214,13 @@ Check the generated `.qsf` for the exact assignment names your Quartus version w
   odd pin n mates with power-board pin n+1.
   - Two power-board labels differ from the card's: `heater_cap_ad_meas` vs `heater_cap_meas`, and `Cuk_cap_meas_raw`.
     Check whether those analog pins are actually connected on the power board.
+  - **PRI_DHB_HI / PRI_DHB_LO:** in the power board's KiCad transcription (`/home/jari/dev/tube_psu_kicad`), the Si8274
+    (DRV5) PWM input, pin 1, is driven by the card's **PRI_DHB_LO**, and PRI_DHB_HI goes to its pin 2 (NC1). That is
+    the opposite of `reference/power_board_header.csv`. Confirm on the original tube_power 5.1 schematic before writing
+    the half-bridge PWM firmware.
+  - **Pull-downs:** the power board has 10 k pull-downs on PRI_DHB_HI/LO, EPWM5A, EPWM6A and PFC_PWM1/2. The card adds
+    R40/R41 (10 k) on EPWM2A/EPWM2B, which drive the power board's Si8661 isolator inputs. EPWM1A goes nowhere on the
+    power board.
 - [ ] **Outputs:** toggle each FPGA output (EPWM*, PRI_DHB_*, CUK_CS, GPIO_*) from a test design and probe it at its J1
   pin: 0/3.3 V levels and correct pin.
 - [ ] **Inputs:** drive each J1 input at 3.3 V with a pull resistor and read it back in the FPGA.

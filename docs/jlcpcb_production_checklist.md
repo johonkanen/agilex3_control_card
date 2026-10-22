@@ -61,9 +61,9 @@ The numbers below are what the board uses, measured with KiCad's Python on the l
 |---|---|---|
 | Layers / thickness | 6 / 1.6 mm | 6-layer, 1.6 mm offered |
 | Size | 32.5 × 33.8 mm (outline) | above the minimum board size for assembly |
-| Min track width / spacing | 0.09 mm rule, 0.1 mm the narrowest used (853 segments) / 0.1 mm | multilayer min trace/space |
-| Vias (diameter / drill), count | 0.25/0.15 × 217 (216 of them in BGA or 0201 pads), 0.3/0.15 × 73, 0.35/0.2 × 37, 0.45/0.25 × 27 | min via 0.15 mm drill / 0.25 mm diameter for multilayer |
-| Via-in-pad | 267 vias sit in SMD pads | needs **epoxy-filled and capped vias (POFV)**: free on 6+ layers |
+| Min track width / spacing | 0.09 mm rule, 0.1 mm the narrowest used (861 segments) / 0.1 mm | multilayer min trace/space |
+| Vias (diameter / drill), count | 0.25/0.15 × 217 (216 of them in BGA or 0201 pads), 0.3/0.15 × 74, 0.35/0.2 × 37, 0.45/0.25 × 30 | min via 0.15 mm drill / 0.25 mm diameter for multilayer |
+| Via-in-pad | 270 vias sit in SMD pads | needs **epoxy-filled and capped vias (POFV)**: free on 6+ layers |
 | Plated holes | 0.559 mm × 50 (J1, 0.9 mm pads: 0.17 mm annular ring), 1.0 mm × 5 (J2, 1.7 mm pads) | min PTH and annular ring |
 | Drill tool sizes | 0.15, 0.20, 0.25, 0.559, 1.0 mm; no NPTH | |
 | Copper to board edge | ≥ 0.3 mm rule | routed-edge clearance |
@@ -75,8 +75,8 @@ The numbers below are what the board uses, measured with KiCad's Python on the l
   item count, and don't change the design.
 - [ ] **Stackup:** compare the board stackup (KiCad Board Setup → Physical Stackup, or the `(stackup` block in the
   `.kicad_pcb`) with JLC's 6-layer 1.6 mm stackup list.
-  - Board: outer prepreg 0.1 mm "2313", core 0.565 mm, inner prepreg 0.127 mm "2116".
-  - No impedance control is needed. Any JLC 6-layer 1.6 mm stackup is acceptable; note which one the quote uses.
+  - Board: **JLC06161H-3313** (set 2026-10-22): outer prepreg 3313 0.0994 mm, cores 0.55 mm, inner prepreg 2116 0.1088 mm.
+  - Select JLC06161H-3313 in the order form. No impedance control is needed.
 
 ## 3. Generate the order files
 
@@ -84,7 +84,7 @@ The numbers below are what the board uses, measured with KiCad's Python on the l
   `KICAD_ROOT=$K tools/fab_outputs.sh`. Files older than the last board commit are stale.
 - [ ] **Expected console summary:**
   - `Found 0 unconnected items`, `Found 0 schematic parity issues`;
-  - `BOM: 43 lines, 141 parts; CPL: 141 placements; left out: J1, J2` (the counts change if parts were added);
+  - `BOM: 44 lines, 146 parts; CPL: 146 placements; left out: J1, J2` (the counts change if parts were added);
   - a `rotation:` line listing the package offsets;
   - `no LCSC number (Global Sourcing / consigned): U1 (A3CZ065BB18AE7S)`.
 - [ ] **Output in `hardware/fab/`:**
@@ -118,7 +118,7 @@ The numbers below are what the board uses, measured with KiCad's Python on the l
 
 - [ ] **Format:** `bom_jlcpcb.csv` has the header `Comment,Designator,Footprint,LCSC Part #`. Every row except U1 has a
   C-number.
-- [ ] **Designators match:** the BOM designators equal the CPL designators exactly (141 each). J1 and J2 are absent from
+- [ ] **Designators match:** the BOM designators equal the CPL designators exactly (146 each). J1 and J2 are absent from
   both.
 - [ ] **Footprint matches JLC's package.** For each LCSC number, `tools/jlc_search.py <C-number>`, then compare the package
   with the footprint size:
@@ -132,20 +132,21 @@ The numbers below are what the board uses, measured with KiCad's Python on the l
   - Required for each part: `canPresaleNumber ≥ quantity per board × number of boards`, and `minPurchaseNum == 1`.
   - `stockCount` can hide oversold parts. The 49.9 k resistor C25897 showed 831 in stock while −38942 were orderable,
     and was replaced with C137969.
-  - Lowest margins at the last check: ADS7056IRUGR C2669798 (2 per board, 34 orderable), MT25QU256 C2061023 (445),
-    AP61302 C3193204 (678).
-- [ ] **Extended parts:** count the extended parts (`componentLibraryType == "expand"`), about 25. Each adds JLC's one-off
+  - Lowest margins at the last check (2026-10-22): ADS7056IRUGR C2669798 (2 per board, 29 orderable), MT25QU256
+    C2061023 (245), AP61302 C3193204 (681). If the ADS7056 runs short, pre-order it into My Parts Lib.
+- [ ] **Extended parts:** count the extended parts (`componentLibraryType == "expand"`, not `preferredComponentFlag`), 23 at the last check. Each adds JLC's one-off
   extended-part fee; report the total.
 - [ ] **U1:**
   - DigiKey/Mouser part A3CZ065BB18AE7S, matched through Global Sourcing in the order's BOM step, or consigned;
   - confirm the exact part number (Z spec, B18A package, E7S grade).
-  - Global Sourcing adds lead time; note the quoted date.
+  - Global Sourcing adds lead time (JLC: review 1–3 business days, purchase usually 9–20). The parts can only be used in
+    an assembly order once they have arrived in JLC's warehouse and show as in stock in Parts Manager → My Parts Lib.
 - [ ] **DNP:** the BOM excludes DNP parts. R14 (MSEL2 pull-up) is DNP and must not be in the BOM.
 
 ## 6. CPL (placement) and rotations
 
-- [ ] **Format:** `cpl_jlcpcb.csv` has the header `Designator,Mid X,Mid Y,Layer,Rotation`, 141 rows. Layer is `Top` or
-  `Bottom`: 36 top and 105 bottom at the last check.
+- [ ] **Format:** `cpl_jlcpcb.csv` has the header `Designator,Mid X,Mid Y,Layer,Rotation`, 146 rows. Layer is `Top` or
+  `Bottom`: 37 top and 109 bottom at the last check.
 - [ ] **Coordinates:** taken from the board origin used by the Gerbers. After upload, every part must land on its pads in
   JLC's preview. A uniform offset means an origin problem.
 - [ ] **Rotation convention** (`tools/jlc_bom_cpl.py`):
@@ -168,7 +169,7 @@ The numbers below are what the board uses, measured with KiCad's Python on the l
 
 PCB:
 - [ ] 6 layers, 1.6 mm, FR-4 TG155 or better (the default for 6 layers).
-- [ ] **Via covering: "Epoxy Filled & Capped"** (POFV). Required: 267 vias are in pads.
+- [ ] **Via covering: "Epoxy Filled & Capped"** (POFV). Required: 270 vias are in pads.
 - [ ] **Surface finish: ENIG.** Needed for flat pads under the 0.65 mm BGA and the 0201s.
 - [ ] Copper: outer 1 oz, inner 0.5 oz.
 - [ ] Min via hole 0.15 mm and min via diameter 0.25 mm, as the quote's via options state.
@@ -178,9 +179,9 @@ PCB:
   fiducials of its own.
 
 Assembly:
-- [ ] Both sides (36 parts on top, 105 on the bottom).
-- [ ] Upload `bom_jlcpcb.csv` and `cpl_jlcpcb.csv`. All 42 lines with a C-number match automatically; U1 via Global
-  Sourcing.
+- [ ] Both sides (37 parts on top, 109 on the bottom).
+- [ ] Upload `bom_jlcpcb.csv` and `cpl_jlcpcb.csv`. All 43 lines with a C-number (42 part types) match
+  automatically; U1 comes from My Parts Lib once the Global Sourcing FPGAs have arrived.
 - [ ] Quantity: the number of boards to assemble. Check against the lowest stock (the ADS7056, 2 per board).
 - [ ] Optional: X-ray inspection for the BGAs (U1, U7, U9).
 
@@ -206,5 +207,10 @@ Assembly:
   capped by POFV.
 - **One 0.25/0.15 via outside a pad.** JLC's 6-layer minimum via allows it.
 - **U1 has no LCSC number:** Global Sourcing or consigned.
+- **J1 annular ring 0.17 mm** (0.9 mm pads on 0.559 mm drills): above JLC's 0.15 mm minimum, below the 0.20 mm
+  recommendation. Changed from 0.127 mm on 2026-10-22.
+- **C79** (extra +3V3A bypass) sits at the buffer U14, not at mux U13: the user's choice.
+- **Values at JLC's limits**, not inside them: 0.25/0.15 mm vias, the 0.28 mm PTH-hole-to-track rule, 0.2 mm via
+  hole spacing, 0.15 mm silkscreen lines. All are allowed.
 - **J1/J2 not in the BOM/CPL:** soldered by hand.
 - **`reference/bom_draft.csv`** is out of date (the generator's input). The BOM that counts is `hardware/fab/bom_jlcpcb.csv`.

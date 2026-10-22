@@ -157,7 +157,7 @@ Before routing:
 
 ## Power distribution plan (agreed 2026-10-12)
 
-Stackup: JLC 6-layer 2313 build, assumed 1.6 mm. From top to bottom (dielectric between each copper layer in brackets): L1 (0.1 mm) L2 (0.565 mm core) L3 (0.127 mm) L4 (0.565 mm core) L5 (0.1 mm) L6. Verify with JLC's impedance calculator. Inner copper 0.5 oz, which is fine for L4.
+Stackup: JLC06161H-3313 (1.6 mm, set 2026-10-22; first drawn as a "2313" build that matched no JLC code). From top to bottom (dielectric between each copper layer in brackets): L1 (3313 prepreg 0.0994 mm) L2 (0.55 mm core) L3 (2116 prepreg 0.1088 mm) L4 (0.55 mm core) L5 (3313 prepreg 0.0994 mm) L6. Inner copper 0.5 oz, which is fine for L4.
 
 | Layer | Use |
 |---|---|
@@ -320,6 +320,29 @@ Result (also the FPGA channel table, in `reference/mux_assignment.csv`):
   - LEDs: LED1_G, LED1_R, LED2_B, LED2_R, LED3_B
 - **Why they're left:** they're crowded in the left-side ADC column and around the config pull-ups. Some can't route at all past the existing copper. Others need detours of 18–38 mm with 3–6 vias.
 
+## Hand routing and pre-order changes (2026-10-19 to 2026-10-22)
+
+The user finished the routing by hand; the generator scripts are no longer used. Changes made after the generated design:
+- **HyperRAM moved to bank 6D** (schematic and routing) for easier length matching. The 11 matched nets (DQ0–7, RWDS,
+  CS#, RESET#) are 10.80–10.85 mm, held by the DRC rule `hyperram_length`; HR_CK is excluded. HR_DQ5–7 labels at the
+  memory were corrected so each net HR_DQn reaches memory pin DQn.
+- **Pin swaps for routing** (ADC SPI, LEDs, J1 PWM group): `reference/pin_assignment.csv` is regenerated from the netlist.
+- **Bottom-layer copper zones** at the 0.75 V and 1.8 V bucks (switch node, output and GND).
+- **Silkscreen:** reference designators hidden (no room to make them readable); outlines 0.15 mm.
+- **J1 pads 0.9 mm** (annular ring 0.17 mm; JLC minimum 0.15 mm).
+- **Default via** 0.3/0.15 mm; via-in-pads in the 0.3 mm BGA pads are 0.25/0.15 mm.
+- **From the three pre-order reviews:**
+  - C77 100 pF C0G feed-forward across R1 (the AP61302 requires it);
+  - C4/C7 33 pF (AP61102 datasheet value);
+  - R40/R41 10 k pull-downs on EPWM2A/EPWM2B (the power board has none on those two lines; it has 10 k pull-downs on
+    the other PWM lines);
+  - C78/C79 extra 100 nF on +3V3A (C78 at mux U10, C79 at buffer U14).
+- **BOM swaps for JLC stock and fees:** oversold or low-stock parts replaced with equivalents (4.7 µF 0201, 47 µF 0603,
+  680 pF C0G, 33 Ω 0201 on 0201 pads); R1 51k basic (core 0.753 V). 23 extended part types.
+- **Stackup** set to JLC06161H-3313.
+- `tools/jlc_bom_cpl.py` writes CPL rotations in JLC's convention (bottom side 180° − angle, package offsets).
+
 ## Open items
 
-- Core current estimate (Altera Power and Thermal Calculator). Confirms AP61302 (3 A) for the core and AP61102 (1 A) for 1.8 V.
+- Core current estimate (Altera Power and Thermal Calculator). Confirms AP61302 (3 A) for the core and AP61102 (1 A) for 1.8 V. The review also flagged the 1 µH 2016 core inductor L1 (fine below about 1.5 A) and the TLV75512's dissipation if the 1.2 V current is high.
+- PRI_DHB_HI/LO: the power board's Si8274 PWM input appears to be driven by the card's PRI_DHB_LO (see `docs/bringup_checklist.md`, section 10).

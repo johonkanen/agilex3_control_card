@@ -1,5 +1,8 @@
 # Hand-off checklist: from here to a JLCPCB order
 
+> **Superseded (2026-10-22).** This was the hand-off list before the hand routing. For ordering, use
+> `docs/jlcpcb_production_checklist.md`; for testing the boards, `docs/bringup_checklist.md`. Kept as history.
+
 Board state after the clock move to D18 (2026-10-18):
 - no copper DRC errors with the JLC rules in `hardware/control_card.kicad_dru`;
 - schematic and board match;
@@ -102,7 +105,7 @@ Memory and I/O:
 ## E. JLCPCB order
 
 PCB:
-- [ ] 6 layers, 1.6 mm. Stackup: JLC's "2313" build, as set in the board. Confirm the stackup code in the quote.
+- [ ] 6 layers, 1.6 mm. Stackup: JLC06161H-3313, as set in the board. Select it in the order form.
 - [ ] Outer copper 1 oz, inner 0.5 oz.
 - [ ] Min hole 0.15 mm, min via 0.25 mm (BGA via-in-pad).
 - [ ] **Via-in-pad: epoxy filled and capped** (POFV). Free on 6 layers, and required for the BGA, flash and HyperRAM.

@@ -55,8 +55,8 @@
 			)
 			(layer "dielectric 1"
 				(type "prepreg")
-				(thickness 0.1)
-				(material "2313 FR4")
+				(thickness 0.0994)
+				(material "3313 FR4")
 				(epsilon_r 4.05)
 				(loss_tangent 0.02)
 			)
@@ -66,7 +66,7 @@
 			)
 			(layer "dielectric 2"
 				(type "core")
-				(thickness 0.565)
+				(thickness 0.55)
 				(material "FR4")
 				(epsilon_r 4.6)
 				(loss_tangent 0.02)
@@ -77,7 +77,7 @@
 			)
 			(layer "dielectric 3"
 				(type "prepreg")
-				(thickness 0.127)
+				(thickness 0.1088)
 				(material "2116 FR4")
 				(epsilon_r 4.16)
 				(loss_tangent 0.02)
@@ -88,7 +88,7 @@
 			)
 			(layer "dielectric 4"
 				(type "core")
-				(thickness 0.565)
+				(thickness 0.55)
 				(material "FR4")
 				(epsilon_r 4.6)
 				(loss_tangent 0.02)
@@ -99,8 +99,8 @@
 			)
 			(layer "dielectric 5"
 				(type "prepreg")
-				(thickness 0.1)
-				(material "2313 FR4")
+				(thickness 0.0994)
+				(material "3313 FR4")
 				(epsilon_r 4.05)
 				(loss_tangent 0.02)
 			)
