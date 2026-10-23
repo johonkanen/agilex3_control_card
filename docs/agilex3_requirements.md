@@ -27,10 +27,10 @@ the guideline values.
 | VCCPT_HVIO, VCCFUSEWR_SDM | 1.8 V | same regulator as VCCPT | 2A | +1V8 |
 | VCCIO_SDM | 1.8 V | may share the VCCPT regulator | 2A | +1V8 |
 | VCCPLL_SDM, VCCADC | 1.8 V | from VCCPT **with isolation filtering** | 2A | +1V8_PLL, +1V8_ADC (filtered) |
-| VCCRCORE | 1.2 V | may share VCCIO_PIO when that is 1.2 V | 2B | +1V2_RCORE (filtered, from TLV75512) |
+| VCCRCORE | 1.2 V | may share VCCIO_PIO when that is 1.2 V | 2B | +1V2_RCORE (filtered, from AP61102 buck U17) |
 | VCCIO_PIO_SDM | | to VCCRCORE unless Avalon-ST x16 configuration is used | 2B | +1V2 |
 | VCCIO_PIO_3A_T (HSIO) | 1.0–1.3 V | one of 1.0/1.05/1.1/1.2/1.3 V | 2B | +1V2 (bank unused) |
-| VCCIO_HVIO_6A…6H | 1.8, 2.5 or 3.3 V | own regulator ("Isolate") | 2B | +3V3; 6C and 6D on their own 1.8 V LDO (`+1V8_HR`) |
+| VCCIO_HVIO_6A…6H | 1.8, 2.5 or 3.3 V | own regulator ("Isolate") | 2B | +3V3; 6C and 6D on their own 1.8 V buck (`+1V8_HR`, U18) |
 | VCCLSENSE / GNDSENSE | | differential remote sense to the core regulator | | VCC_SENSE_P/N pair on L6 |
 
 Decoupling (worksheet PWR_CAP for A3C065 in B18A):
@@ -59,19 +59,30 @@ The card puts 1 µF and 4.7 µF 0201s on supply/ground ball pairs, and bulk caps
 - **Order:** Group 1 → Group 2A → Group 2B. Each group must reach 90 % of nominal before the next starts.
 - **Within a group:** rails may ramp in any order.
 - **Ramps:** every rail ramps monotonically, and the sequence must meet the power-on-reset (POR) delay (data sheet).
+- **Group members** (Power Management User Guide 846855, section 3.2, Table 2, read 2026-10-23 on docs.altera.com):
+  - Group 1: VCC, VCCP, VCCL_ADC_SDM, VCC_IO_SDM, VCCL_SDM, VCCH_SDM, VCCPLLDIG_SDM (plus HPS and transceiver rails);
+  - Group 2A: VCCPT_HVIO, VCCFUSEWR_SDM, VCCIO_SDM, VCCPT, VCCPLL_SDM, VCCADC (plus HPS and transceiver rails);
+  - Group 2B: VCCIO_PIO, VCCIO_HVIO, VCCIO_PIO_SDM, VCCRCORE. No order is required inside 2B, so 1.2 V and the HVIO
+    rails (3.3 V, 1.8 V) may come up in any order.
+- **Power-down:** Altera *recommends* reversing the power-up order (to limit current draw); it is not a requirement.
+- **CvP only:** all supplies within 10 ms from the first ramp to the last (not used here).
 - **AS normal mode:** VCCIO_SDM must reach its operating level within 10 ms, and the flash must be powered no later than VCCIO_SDM.
 - **POR monitoring:** the POR circuit watches VCCL_SDM, VCCPT, VCCIO_SDM, VCCADC, VCC, VCCIO_PIO_SDM, VCCRCORE and VCC_IO_SDM.
 - **This card:**
   1. 0.75 V buck (group 1) starts first;
   2. its PG enables the 1.8 V buck (2A); the flash is on the same +1V8;
   3. the 1.8 V PG enables the 3.3 V buck (2B);
-  4. the 1.2 V LDO and bank 6C's 1.8 V LDO come up from +3V3 (2B).
+  4. the 3.3 V PG enables the 1.2 V buck and the `+1V8_HR` buck together (2B; buck version, 2026-10-23).
+  - +1V2 (VCCRCORE, VCCIO_PIO_SDM) comes up last, or together with `+1V8_HR`. Those are the only POR-monitored 2B rails, so POR
+    starts counting only once every rail, including the HVIO banks and the oscillator supply, is up.
+  - The order 0.75 → 1.8 → 1.2 → 3.3 / 1.8 V (HR) would also meet Table 2, but it releases the POR-monitored rails
+    before the HVIO banks and the oscillator are up.
 - **Bank 6C has its own 1.8 V rail** (fixed 2026-10-17). The Pin Connection Guidelines (846812, 2025.08.13, section 1.5,
   Table 32 and Figure 1) put VCCIO_HVIO in power group 2B on its own regulator (#5, sharing "Isolate": "Connect to a
   dedicated 3.3-V, 2.5-V, 1.8-V power supply"). Only VCCPT_HVIO, VCCIO_SDM, VCCIO_HPS and VCCFUSEWR_SDM may share the
   VCCPT regulator, plus VCCADC, VCCPLL_SDM and VCCPLL_HPS through filters.
-  - Supply: `+1V8_HR` from a TLV75518PDBVR (U16) fed from +3V3, so it ramps in group 2B.
-  - Loads: VCCIO_HVIO_6C (U17, W15), VCCIO_HVIO_6D (P15, P17), the HyperRAM, and the oscillator through its bead, so
+  - Supply: `+1V8_HR` from an AP61102 buck (U18) enabled by the 3.3 V PG, so it ramps in group 2B (was a TLV75518 LDO, U16).
+  - Loads: VCCIO_HVIO_6C (balls U17, W15), VCCIO_HVIO_6D (balls P15, P17), the HyperRAM, and the oscillator through its bead, so
     the oscillator never drives D18 while bank 6D is unpowered. It still starts before power-on reset releases, because the POR circuit watches the
     2B rails VCCRCORE and VCCIO_PIO_SDM.
   - On the board: an L3 island over the HyperRAM, with a strip to the bank balls.
