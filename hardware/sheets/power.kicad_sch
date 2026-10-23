@@ -1983,16 +1983,6 @@
 	)
 	(wire
 		(pts
-			(xy 27.94 184.15) (xy 27.94 186.69)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "69a802a5-2c3f-5875-a44f-4af2c0b4016c")
-	)
-	(wire
-		(pts
 			(xy 55.88 45.72) (xy 58.42 45.72)
 		)
 		(stroke
@@ -2420,16 +2410,6 @@
 			(type default)
 		)
 		(uuid "c5aa1c88-7931-5e77-9c77-9fbcbf0345b4")
-	)
-	(wire
-		(pts
-			(xy 27.94 176.53) (xy 27.94 173.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c5da3d35-eccd-5e57-851f-8f56c586ed24")
 	)
 	(wire
 		(pts
@@ -3450,29 +3430,6 @@
 			)
 		)
 	)
-	(global_label "+5V"
-		(shape passive)
-		(at 27.94 173.99 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "41def7fa-816a-55be-87f2-fd993cc2fb1f")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 27.94 173.99 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-	)
 	(global_label "+1V8_ADC"
 		(shape passive)
 		(at 200.66 175.26 270)
@@ -4337,29 +4294,6 @@
 		(uuid "a803b168-e638-5b0b-9241-3854ed564bcd")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 121.92 67.31 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-	)
-	(global_label "GND"
-		(shape passive)
-		(at 27.94 186.69 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "ab8a5772-b3cd-529b-a681-d394c6125a5c")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 27.94 186.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8059,7 +7993,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+		(property "Footprint" "Resistor_SMD:R_0201_0603Metric"
 			(at 254 152.4 0)
 			(hide yes)
 			(show_name no)
@@ -13028,126 +12962,6 @@
 			(project "control_card"
 				(path "/02cf0cd1-c66b-5c4c-858e-ca84c1bbaba4/affdd0cf-ed48-5605-8b8d-7bdc9d18f6df"
 					(reference "L1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 27.94 180.34 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "edebe907-6eac-57dc-862a-2aecb37b94a2")
-		(property "Reference" "C14"
-			(at 30.48 179.07 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "22u"
-			(at 30.48 181.61 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 27.94 180.34 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 27.94 180.34 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" "5 V input from J1"
-			(at 27.94 180.34 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "LCSC" "C45783"
-			(at 27.94 180.34 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "MPN" "CL21A226MAQNNNE"
-			(at 27.94 180.34 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Group" "input_5v"
-			(at 27.94 180.34 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "1"
-			(uuid "6f6555b9-8470-53d2-8b4e-f6d6c3156696")
-		)
-		(pin "2"
-			(uuid "12f871c6-fd49-5c0f-8606-71fa2b82db57")
-		)
-		(instances
-			(project "control_card"
-				(path "/02cf0cd1-c66b-5c4c-858e-ca84c1bbaba4/affdd0cf-ed48-5605-8b8d-7bdc9d18f6df"
-					(reference "C14")
 					(unit 1)
 				)
 			)
