@@ -40,7 +40,8 @@ yet: `docs/bringup_checklist.md` is the plan for when it arrives.
 | `hardware/lib/` | Project symbols and footprints, including the Agilex 3 symbol and the B18A BGA footprint |
 | `reference/` | FPGA pin assignment (`pin_assignment.csv`), Altera pin lists, power-board header pinout, JLCPCB part list |
 | `docs/` | Design notes, Agilex 3 board requirements, flash requirements, production and bring-up checklists, board renders |
-| `tools/` | Python scripts that generated the schematic and board, plus the fabrication-output scripts |
+| `tools/` | Python scripts that generated the schematic and board, plus the fabrication-output wrapper |
+| `tools/jlc/` | Submodule [jlc-tools](https://github.com/johonkanen/jlc-tools): JLC part search, stock check, BOM/CPL and Gerber export |
 
 ## Documentation
 
@@ -55,6 +56,8 @@ yet: `docs/bringup_checklist.md` is the plan for when it arrives.
 - [`docs/order_checklist.md`](docs/order_checklist.md): the earlier hand-off list from routing to ordering (history).
 
 ## Opening the design
+
+Clone with `git clone --recursive`, or run `git submodule update --init` after cloning, to get `tools/jlc`.
 
 Open `hardware/control_card.kicad_pro` in KiCad 10. The project's own symbol and footprint libraries are set up in
 `hardware/sym-lib-table` and `hardware/fp-lib-table`. Everything else comes from KiCad's standard libraries.
@@ -75,7 +78,11 @@ part number, so order it through JLCPCB's Global Sourcing or supply it yourself.
 in an assembly order once they have arrived in JLC's warehouse (Parts Manager → My Parts Lib).
 
 Check stock right before ordering: judge each part by JLC's orderable quantity and minimum purchase, not the plain stock
-count (see the production checklist, section 5).
+count (see the production checklist, section 5):
+
+```sh
+python3 -I tools/jlc/stock_check.py hardware/fab/bom_jlcpcb.csv --boards 10
+```
 
 ## FPGA pin assignment
 

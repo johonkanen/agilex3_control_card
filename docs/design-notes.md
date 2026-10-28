@@ -56,7 +56,7 @@ From `reference/agilex3_card_v1_fpga_balls.csv` (its IPC-356 netlist) and the sy
 - **13 nets end at the FPGA and go nowhere else**, on banks 6E and 6F (BH7, BH10, BJ2, BL2, BM2, BM3, BM8, BM9, BN5, BN8, BN11, BN14, BN16). The Ti60 names were carried over without being routed.
 - **A3CY025 bank resources:** 8 HVIO banks × 20 pins (6A–6H), plus 48 HSIO in bank 3A_T. This card needs about 66 user I/O at 3.3 V, all on HVIO; HSIO stays unused.
 
-## Parts (JLCPCB stock checked 2026-10-12 with `tools/jlc_search.py`)
+## Parts (JLCPCB stock checked 2026-10-12 with `tools/jlc/jlc_search.py`)
 
 | Function | Part | LCSC | Stock | Note |
 |---|---|---|---|---|
@@ -340,7 +340,7 @@ The user finished the routing by hand; the generator scripts are no longer used.
 - **BOM swaps for JLC stock and fees:** oversold or low-stock parts replaced with equivalents (4.7 µF 0201, 47 µF 0603,
   680 pF C0G, 33 Ω 0201 on 0201 pads); R1 51k basic (core 0.753 V). 23 extended part types.
 - **Stackup** set to JLC06161H-3313.
-- `tools/jlc_bom_cpl.py` writes CPL rotations in JLC's convention (bottom side 180° − angle, package offsets).
+- `tools/jlc/jlc_bom_cpl.py` writes CPL rotations in JLC's convention (bottom side 180° − angle, package offsets).
 
 ## Open items
 

@@ -19,8 +19,11 @@ match. Section 9 lists deviations already reviewed and accepted, so don't re-rai
   - KiCad's Python: `$K/AppRun python3.11 -I`.
   - DRC on a copy of the board only applies the project rules if `control_card.kicad_pro` and `control_card.kicad_dru` sit
     next to it. Copy the whole `hardware/` folder.
-- **JLC part search:** `python3 -I tools/jlc_search.py <C-number or keyword> -n 5`. In Python, `tools/jlc_search.search(kw, n)`
-  returns the raw records.
+- **JLC tools** are in the `tools/jlc` submodule ([jlc-tools](https://github.com/johonkanen/jlc-tools); run
+  `git submodule update --init` after cloning).
+  - Part search: `python3 -I tools/jlc/jlc_search.py <C-number or keyword> -n 5`. In Python,
+    `jlc_search.search(kw, n)` returns the raw records.
+  - Stock check for the BOM: `python3 -I tools/jlc/stock_check.py hardware/fab/bom_jlcpcb.csv --boards 10`.
 - **Don't run** `tools/gen_schematic.py` or `tools/build_pcb.sh`. They regenerate the design from scratch and would
   overwrite the hand edits and routing.
 
@@ -120,15 +123,15 @@ The numbers below are what the board uses, measured with KiCad's Python on the l
   C-number.
 - [ ] **Designators match:** the BOM designators equal the CPL designators exactly (146 each). J1 and J2 are absent from
   both.
-- [ ] **Footprint matches JLC's package.** For each LCSC number, `tools/jlc_search.py <C-number>`, then compare the package
+- [ ] **Footprint matches JLC's package.** For each LCSC number, `tools/jlc/jlc_search.py <C-number>`, then compare the package
   with the footprint size:
   - an `R_0201`/`C_0201` footprint needs a 0201 part, `_0402` a 0402 part, and so on;
   - SOT-23-5 and SOT-563 must match exactly;
   - the BGA-24 parts (U7 flash, U9 HyperRAM) are 6×8 mm.
 
   A mismatch is a failure. R27–R33 were once 0402 parts on 0201 pads, and that was fixed.
-- [ ] **Stock that can actually be ordered.** Use the `canPresaleNumber` and `minPurchaseNum` fields from
-  `jlc_search.search()`, not `stockCount`.
+- [ ] **Stock that can actually be ordered.** Run `tools/jlc/stock_check.py`, which uses the `canPresaleNumber`
+  and `minPurchaseNum` fields, not `stockCount`.
   - Required for each part: `canPresaleNumber ≥ quantity per board × number of boards`, and `minPurchaseNum == 1`.
   - `stockCount` can hide oversold parts. The 49.9 k resistor C25897 showed 831 in stock while −38942 were orderable,
     and was replaced with C137969.
@@ -149,7 +152,7 @@ The numbers below are what the board uses, measured with KiCad's Python on the l
   `Bottom`: 37 top and 109 bottom at the last check.
 - [ ] **Coordinates:** taken from the board origin used by the Gerbers. After upload, every part must land on its pads in
   JLC's preview. A uniform offset means an origin problem.
-- [ ] **Rotation convention** (`tools/jlc_bom_cpl.py`):
+- [ ] **Rotation convention** (`tools/jlc/jlc_bom_cpl.py`):
   - bottom parts are 180° − KiCad angle;
   - package offsets come from the kicad-jlcpcb-tools table (SOT-23 +180°, TSSOP/SOIC/QFN +270°, and so on);
   - a per-part override is possible with a footprint field `JLC Rotation Offset`.

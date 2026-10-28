@@ -11,7 +11,7 @@ import csv
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "jlc"))
 import jlc_search  # noqa: E402
 
 REF = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "reference")
