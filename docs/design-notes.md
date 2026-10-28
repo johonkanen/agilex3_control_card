@@ -12,7 +12,7 @@ A KiCad 10 rebuild of the Proteus `u25_v2` Cyclone 10 control card. The FPGA bec
 
 ## Architecture
 
-- **I/O:** user I/O on 3.3 V HVIO banks, with no level shifters. That covers the header, 2 RGB LEDs, 4051 mux selects and both ADS7056 SPIs (DVDD 3.3 V, as on U25). Banks 6C and 6D are the exception: they run at 1.8 V. 6D carries the HyperRAM (moved from 6C on 2026-10-22, for easier length matching) and the clock; 6C is unused. Its VCCIO balls U17/W15, the HyperRAM and the oscillator are on `+1V8_HR`, from a TLV75518 fed by +3V3 (2026-10-17). Altera's power sharing table wants VCCIO_HVIO on its own regulator in power group 2B, not on the VCCPT/VCCIO_SDM rail.
+- **I/O:** user I/O on 3.3 V HVIO banks, with no level shifters. That covers the header, 2 RGB LEDs, 4051 mux selects and both ADS7056 SPIs (DVDD 3.3 V, as on U25). Banks 6C and 6D are the exception: they run at 1.8 V. 6D carries the HyperRAM (moved from 6C on 2026-10-22, for easier length matching) and the clock; 6C is unused. Its VCCIO balls U17/W15, the HyperRAM and the oscillator are on `+1V8_HR`, from its own AP61102 buck U18 (a TLV75518 LDO fed by +3V3 from 2026-10-17 to 2026-10-23). Altera's power sharing table wants VCCIO_HVIO on its own regulator in power group 2B, not on the VCCPT/VCCIO_SDM rail.
 - **Clock:** one 100 MHz 1.8 V oscillator (2026-10-16) drives PLLREFCLK1 (D18, bank 6D) and, on the same net `CLK100M`, the SDM's OSC_CLK_1 (BB44), so Quartus can set the configuration clock to OSC_CLK_1 100 MHz (faster configuration and AS_CLK; needed if a design ever uses transceivers, EMIF, MIPI or PHY Lite). The 33 Ω series resistor sits at the oscillator, with short branches to D18 and BB44. Bank 6D carries only the clock and runs at 1.8 V from `+1V8_HR` (2026-10-18). The clock first went to 6C's PLLREFCLK2 (B3), but B3 could not be routed: HyperRAM traces close it in on L1, and the 1.8 V buck sits under it on L6. HR_RESET_N stays on C2. The oscillator runs from `+1V8_HR`; the first 512 KB of the bitstream always loads on the internal oscillator.
 - **HyperRAM:** 32 MB, 1.8 V W958D8NBYA5I (2026-10-15; it replaced the 8 MB 3 V IS66WVH8M8BLL because no 3 V part of 32 MB or more is stocked). Still to check: the HVIO speed limit against the HyperRAM clock.
   - **64 MB option:** W959D8NFYA5I is a drop-in. Its ball map, package and 1.8 V supply match the W958D8NBYA (both datasheets A01-003). It stacks two 256 Mb dies, so the HyperRAM controller must leave CR0[3] (fixed latency) at its default of 1 in both dies. JLC has none in stock; DigiKey had 478.
@@ -23,14 +23,15 @@ A KiCad 10 rebuild of the Proteus `u25_v2` Cyclone 10 control card. The FPGA bec
   - AVDD is the reference: 4.7 µF 0603 X5R (about 3.3 µF at 3.3 V; the datasheet asks for 3.3 µF) plus 100 nF, at the pin with no via in between.
   - CS/SCLK/SDO series resistors 33 Ω (were 100 Ω from U25): SDO is valid at most 10 ns after the SCLK rising edge, so at 16.7 ns per bit an RC delay of 1.5 ns matters. Capture SDO with a PLL phase-shifted clock tuned to the round trip, not on the launching edge.
   - Layout: kickback RC and AVDD cap at the ADC pins, ADC GND pin straight to the plane, no digital line under or across AINP/BUF_OUT/MUX_OUT.
-- **Power:** follows the sequencing proven on agilex3_control_card_v1. Each rail's power-good enables the next: 0.75 V → 1.8 V → 1.2 V and 3.3 V.
+- **Power:** every FPGA rail comes from an AP61x02 buck in forced PWM (since 2026-10-23, see "Switcher-only power" below). Each step's power-good enables the next, in Altera's group order: 0.75 V (group 1) → 1.8 V (2A) → 3.3 V → 1.2 V and 1.8 V_HR (2B).
 
   | Rail | Feeds |
   |---|---|
   | 0.75 V | VCC, VCCP, VCCL_SDM, VCCH_SDM, VCC_HSSI, VCCPLLDIG_SDM, VCC_IO_SDM, VCCL_ADC_SDM |
   | 1.8 V | VCCPT, VCCPT_HVIO, VCCIO_SDM, VCCADC, VCCFUSEWR_SDM, VCCPLL_SDM |
   | 1.2 V | VCCIO_PIO_3A_T, VCCIO_PIO_SDM, VCCRCORE |
-  | 3.3 V | VCCIO_HVIO_6A–6H |
+  | 3.3 V | VCCIO_HVIO_6A, 6B, 6E–6H |
+  | 1.8 V_HR | VCCIO_HVIO_6C, 6D (HyperRAM bank), the HyperRAM and the oscillator |
 
   The core regulator is a small module with power-good and remote sense, sized with Altera's Power and Thermal Calculator. The v1 card's TDA38812 (12 A) is oversized. Modules with built-in inductors save board area.
 - **Configuration:** AS ×4 from a 1.8 V QSPI flash on Altera's supported list (v1 used an unsupported W25Q64JW). Also MSEL straps, nCONFIG/nSTATUS 1k pull-ups to 1.8 V, a 2k resistor from RREF_SDM to ground, and JTAG shifted from the 3.3 V header to SDM 1.8 V through an SN74AXC4T774. The flash's dedicated RESET# (ball A4, internal pull-up) is wired to AS_nRST (SDM_IO15, ball BA51): the Agilex 3 configuration guide (847422, 3.2.7.1) only supports QSPI flash with SFDP and a dedicated reset pin, and requires the SDM to own that reset.
@@ -61,8 +62,8 @@ From `reference/agilex3_card_v1_fpga_balls.csv` (its IPC-356 netlist) and the sy
 | Function | Part | LCSC | Stock | Note |
 |---|---|---|---|---|
 | 0.75 V core buck | AP61302Z6-7 (3 A, PG) | C3193204 | 730 | 0.6 V FB; the AP61300 has no PG |
-| 1.8 V, 3.3 V bucks | AP61102Z6-7 (1 A, PG) | C5224055 | 1018 | Use the AP61302 instead if 1 A is too little. AP61202 has only 72 in stock |
-| 1.2 V (VCCIO_PIO, VCCRCORE) | TLV75512PDBVR | C2877864 | 2965 | from 3.3 V, enabled with it |
+| 1.8 V, 3.3 V, 1.2 V, 1.8 V_HR bucks | AP61102Z6-7 (1 A, PG) | C5224055 | 1018 (939 on 2026-10-24) | 4 per board since 2026-10-23. Use the AP61302 instead if 1 A is too little. AP61202 has only 72 in stock |
+| Buck inductors | WPN201610H1R0MT (1 µH, 2016) | C97002 | 1829 (2026-10-24) | 5 per board. 1.2 V and 1.8 V_HR were TLV75512/TLV75518 LDOs until 2026-10-23 |
 | Analog supply | TLV75533PDBVR (3.3 V) | C404027 | 132909 | 3.3 V chosen (U25 used a 3.0 V TPS73030) |
 | Clock | OT3225100MJBA4SL 100 MHz, 1.8–3.3 V, 3225 | C4353707 | 2466 | on +1V8; 1.8 V needed for OSC_CLK_1. 25 MHz twin OT322525MJBA4SL (C669088, 45726) also fits |
 | HyperRAM | W958D8NBYA5I (256 Mb, 1.8 V, 200 MHz) | C7420405 | 1107 | same 24-ball HyperBus ball map as before; bank 6C at 1.8 V |
@@ -133,12 +134,12 @@ The bottom under the BGA (x 83–101, y 104–122) is kept out for everything ex
 |---|---|---|
 | Top | upper strip | two side-view RGB LEDs D1/D2 on the north edge, lens out (x 77.5 and 81.8, end pads 1.8 mm from the edge as on U25; three no longer fit), then HyperRAM (next to banks 6C/6D) and the QSPI flash pushed against it (next to the SDM); both BGA-24 with a 0.5 mm courtyard. The memory strip moved 0.4 mm east (2026-10-15) so its courtyards clear D2's; its routes were ripped up and re-routed with `ROUTE_ONLY` (route_signals.py, route_vias.py) |
 | Top | left column | ADC chain A, mux at the bottom next to J1's analog pins, turned so its COM output (pin 3) faces the buffer's + input |
-| Top | right column (below J2) | 3.3 V buck cell, laid out in rows; below it, hand-placed next to the SDM balls they serve: the MSEL1 pull-up, the MSEL2 pull-down (and its DNP pull-up option), the nCONFIG and nSTATUS pull-ups, and the RREF_SDM resistor |
-| Bottom | upper-left, partly under the FPGA's west edge | 1.8 V buck cell, placed by hand (`MANUAL` in `place.py`, kept across rebuilds), next to the analog LDO, since both take 5 V from the run to the left side |
+| Top | right column (below J2) | 3.3 V buck cell, laid out in rows (moved to the bottom on 2026-10-23; the top now holds the U2 enable divider and the 3.3 V and 1.2 V feedback parts); below it, hand-placed next to the SDM balls they serve: the MSEL1 pull-up, the MSEL2 pull-down (and its DNP pull-up option), the nCONFIG and nSTATUS pull-ups, and the RREF_SDM resistor |
+| Bottom | upper-left, partly under the FPGA's west edge | 1.8 V buck cell, placed by hand (`MANUAL` in `place.py`, kept across rebuilds), next to the analog LDO, since both take 5 V from the run to the left side. Since 2026-10-23 also the 1.8 V_HR cell U18 (hand-placed) east of it, next to the HyperRAM |
 | Bottom | upper strip | the 100 MHz oscillator; HyperRAM and flash decoupling, each 0402 with its pads on that BGA's VCC/VSS ball pair; configuration pull-ups. The HyperRAM routes entirely on L1, so the rest of this strip on L6 stays free |
 | Bottom | left column | ADC chain B (mux next to J1, COM output facing the buffer), analog LDO |
 | Bottom | under the FPGA | 23 × 100 nF 0201 on supply/GND ball pairs; bulk 0603 in the via-free channels; the JTAG level shifter (UQFN-16) with 0201 pull-ups and decoupling, hand-placed under the FPGA's north edge (about 8 mm from the JTAG balls) to keep the SDM corner free; clear of every via |
-| Bottom | right column | core buck, 1.2 V LDO |
+| Bottom | right column | core buck; since 2026-10-23 (hand-placed) also the 3.3 V cell below it and the 1.2 V buck cell U17 at the south end. The 3.3 V cell was on the top before |
 
 **Via model:** only supply, ground and sense balls get a via-in-pad; every signal I/O escapes on L1 (59 of the 66 assigned signals are on the outer two rings). Unused I/O, NC and DNU balls (about 180) have none, so the area under the unused HSIO bank is free for parts. Since the pin assignment decides which balls need vias, `build_pcb.sh` places, assigns pins, then places again.
 
@@ -342,7 +343,29 @@ The user finished the routing by hand; the generator scripts are no longer used.
 - **Stackup** set to JLC06161H-3313.
 - `tools/jlc/jlc_bom_cpl.py` writes CPL rotations in JLC's convention (bottom side 180° − angle, package offsets).
 
+## Switcher-only power (2026-10-23 to 2026-10-28)
+
+The plan and the datasheet checks are in `docs/power_switchers_plan.md`; the power-up order in
+`docs/agilex3_requirements.md` section 3.
+- **LDOs replaced:** U5 TLV75512 (+1V2) and U16 TLV75518 (+1V8_HR), both fed from +3V3, became AP61102 bucks from +5V:
+  U17 (+1V2: L4 1 µH, C81 10 µ in, C82 22 µ out, R42/R43 200k/200k, C80 33p) and U18 (+1V8_HR: L5, C84 10 µ, C85
+  22 µ, R44/R45 200k/100k, C83 33p), copies of the U3 cell. C10/C74 removed; C11 and C75 (4.7 µF) stay as extra output
+  caps. Both PG pins are unused. +3V3A stays on the U6 LDO: it isn't an FPGA rail and the ADC chain gains from its low noise.
+- **Forced PWM:** an AP61x0x EN driven above VIN − 200 mV selects PFM at light load; below that, PWM at any load. U2's EN
+  was tied to +5V and the PG pull-ups went to +5V, so all three original bucks ran in PFM at this card's light loads.
+  Every enable net now sits at 3.33 V: EN_0V75 from R46 100k / R47 200k, R48 and R49 200k to GND beside the PG pull-ups
+  R5 and R8, and the new PG_3V3 (U4's PG) from R50 100k / R51 200k. Cost: about 0.6 mA quiescent current per buck.
+  Removing the 200k returns a buck to PFM.
+- **Sequence:** PG_3V3 enables U17 and U18 together, so +1V2, the only POR-monitored rail in group 2B, comes up last.
+- **Board:** placed and routed by hand; the 3.3 V cell moved to the bottom. Each cell's SW, output, GND and +5V nodes have
+  B.Cu pours with distinct priorities: SW 8, output 7, GND 6, +5V 5. KiCad 10.0.7's zone filler hangs (0 % CPU) when
+  zones of different nets overlap at equal priority. The GND pours reach each buck's GND pin. C14 (22 µF +5V bulk)
+  was removed; +5V keeps C15 22 µF and C16 100 nF. R46 is 0201 (0201WMF1003TEE, C270364).
+- **Result:** 161 assembled parts (40 top, 121 bottom), 43 BOM lines, 23 extended part types. DRC 0 errors, 0
+  unconnected, 0 parity issues; ERC only GNDSENSE.
+
 ## Open items
 
-- Core current estimate (Altera Power and Thermal Calculator). Confirms AP61302 (3 A) for the core and AP61102 (1 A) for 1.8 V. The review also flagged the 1 µH 2016 core inductor L1 (fine below about 1.5 A) and the TLV75512's dissipation if the 1.2 V current is high.
+- Core current estimate (Altera Power and Thermal Calculator). Confirms AP61302 (3 A) for the core and AP61102 (1 A) for 1.8 V. The review also flagged the 1 µH 2016 core inductor L1 (fine below about 1.5 A).
+- Ripple on +1V2 and +1V8_HR (formerly LDO rails) against the VCCRCORE, VCCIO_PIO and VCCIO_HVIO limits, and forced PWM against PFM, measured at bring-up (`docs/bringup_checklist.md`, section 3).
 - PRI_DHB_HI/LO: the power board's Si8274 PWM input appears to be driven by the card's PRI_DHB_LO (see `docs/bringup_checklist.md`, section 10).

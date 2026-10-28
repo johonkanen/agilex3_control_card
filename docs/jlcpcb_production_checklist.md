@@ -87,7 +87,7 @@ The numbers below are what the board uses, measured with KiCad's Python on the l
   `KICAD_ROOT=$K tools/fab_outputs.sh`. Files older than the last board commit are stale.
 - [ ] **Expected console summary:**
   - `Found 0 unconnected items`, `Found 0 schematic parity issues`;
-  - `BOM: 44 lines, 146 parts; CPL: 146 placements; left out: J1, J2` (the counts change if parts were added);
+  - `BOM: 43 lines, 161 parts; CPL: 161 placements; left out: J1, J2` (the counts change if parts were added);
   - a `rotation:` line listing the package offsets;
   - `no LCSC number (Global Sourcing / consigned): U1 (A3CZ065BB18AE7S)`.
 - [ ] **Output in `hardware/fab/`:**
@@ -121,7 +121,7 @@ The numbers below are what the board uses, measured with KiCad's Python on the l
 
 - [ ] **Format:** `bom_jlcpcb.csv` has the header `Comment,Designator,Footprint,LCSC Part #`. Every row except U1 has a
   C-number.
-- [ ] **Designators match:** the BOM designators equal the CPL designators exactly (146 each). J1 and J2 are absent from
+- [ ] **Designators match:** the BOM designators equal the CPL designators exactly (161 each). J1 and J2 are absent from
   both.
 - [ ] **Footprint matches JLC's package.** For each LCSC number, `tools/jlc/jlc_search.py <C-number>`, then compare the package
   with the footprint size:
@@ -148,8 +148,8 @@ The numbers below are what the board uses, measured with KiCad's Python on the l
 
 ## 6. CPL (placement) and rotations
 
-- [ ] **Format:** `cpl_jlcpcb.csv` has the header `Designator,Mid X,Mid Y,Layer,Rotation`, 146 rows. Layer is `Top` or
-  `Bottom`: 37 top and 109 bottom at the last check.
+- [ ] **Format:** `cpl_jlcpcb.csv` has the header `Designator,Mid X,Mid Y,Layer,Rotation`, 161 rows. Layer is `Top` or
+  `Bottom`: 40 top and 121 bottom at the last check.
 - [ ] **Coordinates:** taken from the board origin used by the Gerbers. After upload, every part must land on its pads in
   JLC's preview. A uniform offset means an origin problem.
 - [ ] **Rotation convention** (`tools/jlc/jlc_bom_cpl.py`):
@@ -182,7 +182,7 @@ PCB:
   fiducials of its own.
 
 Assembly:
-- [ ] Both sides (37 parts on top, 109 on the bottom).
+- [ ] Both sides (40 parts on top, 121 on the bottom).
 - [ ] Upload `bom_jlcpcb.csv` and `cpl_jlcpcb.csv`. All 43 lines with a C-number (42 part types) match
   automatically; U1 comes from My Parts Lib once the Global Sourcing FPGAs have arrived.
 - [ ] Quantity: the number of boards to assemble. Check against the lowest stock (the ADS7056, 2 per board).

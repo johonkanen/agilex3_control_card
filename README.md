@@ -8,9 +8,11 @@ outline and connector positions.
 |---|---|
 | ![Top side](docs/img/board_top.png) | ![Bottom side](docs/img/board_bottom.png) |
 
-**Status: ready to order (2026-10-22).** The design is complete and fully routed; DRC is clean and the board matches the
+**Status: ready to order (2026-10-28).** The design is complete and fully routed; DRC is clean and the board matches the
 schematic. It passed three independent reviews (production files against JLCPCB's capabilities, electrical design, and the
-Agilex 3 configuration against Altera's guidelines and two evaluation-kit schematics). The FPGAs are being bought through
+Agilex 3 configuration against Altera's guidelines and two evaluation-kit schematics). After the reviews, the 1.2 V and
+HyperRAM 1.8 V LDOs were replaced by bucks and all bucks set to forced PWM (`docs/power_switchers_plan.md`); that change
+has not had a separate review. The FPGAs are being bought through
 JLCPCB Global Sourcing; the assembly order follows when they reach JLC's warehouse. The board has not been built or tested
 yet: `docs/bringup_checklist.md` is the plan for when it arrives.
 
@@ -24,12 +26,13 @@ yet: `docs/bringup_checklist.md` is the plan for when it arrives.
 - **Clock:** 100 MHz 1.8 V oscillator into PLLREFCLK1 (D18) and the configuration clock input OSC_CLK_1.
 - **ADC:** 2 channels, each an 8:1 analog mux (SN74LV4051A) → OPA365 buffer → ADS7056 (14-bit, 2.5 MSPS), on a separate
   analog 3.3 V supply.
-- **Power:** from 5 V on the header. Three Diodes AP61x02 bucks (0.753 V core with remote sense, 1.8 V, 3.3 V) start up in order, each
-  enabled by the previous one's power-good. LDOs make 1.2 V, analog 3.3 V and a separate 1.8 V for the HyperRAM bank.
-  The FPGA's PLL and ADC supplies are filtered with ferrite beads.
+- **Power:** from 5 V on the header. Every FPGA rail comes from a Diodes AP61x02 buck, all in forced PWM: 0.753 V core
+  (with remote sense), 1.8 V, 3.3 V, then 1.2 V and a separate 1.8 V for the HyperRAM bank. They start up in Altera's
+  group order, each step enabled by the previous buck's power-good. Only the analog 3.3 V comes from an LDO. The FPGA's
+  PLL, ADC and VCCRCORE supplies are filtered with ferrite beads.
 - **Indicators:** 2 RGB LEDs.
 - **Board:** 32.5 × 33.8 mm, 6 layers, 1.6 mm (JLC stackup JLC06161H-3313), ENIG, 0.65 mm-pitch BGA fanned out with
-  filled and capped via-in-pad. 146 parts assembled by JLCPCB on both sides (37 top, 109 bottom); the headers J1 and J2
+  filled and capped via-in-pad. 161 parts assembled by JLCPCB on both sides (40 top, 121 bottom); the headers J1 and J2
   are soldered by hand.
 
 ## Repository layout

@@ -1,8 +1,10 @@
 # Plan: FPGA supplies from switching regulators only
 
-Status (2026-10-23): going into the order revision (the board order hasn't been placed). Schematic done: U17 (+1V2)
-and U18 (+1V8_HR) bucks replace U5/U16 (C10/C74 removed; C11/C75 kept as extra output caps), and R46–R51 put all
-five bucks in forced PWM. Next: board placement and routing.
+Status (2026-10-28): **done, in the order revision** (the board order hasn't been placed). U17 (+1V2) and U18
+(+1V8_HR) bucks replace U5/U16 (C10/C74 removed; C11/C75 kept as extra output caps), and R46–R51 put all five bucks in
+forced PWM. The board is placed and routed (commits 9d7b18c, 4fef780, 336abad): DRC 0 errors, 0 unconnected, 0 parity
+issues; stock check passed for 10 boards on 2026-10-24 (R46's C270364 was oversold on 2026-10-28). Still open: the ripple and PWM/PFM measurements at bring-up
+(`docs/bringup_checklist.md`, section 3). The rest of this file is the plan as written before the change.
 
 Goal: every FPGA rail comes from a buck regulator, and the power section becomes a block that can be reused on
 other Agilex boards.
@@ -154,6 +156,8 @@ Check in the datasheet:
   PG.
 
 ## 6. Order of work
+
+Steps 1–5 are done (2026-10-28).
 
 1. Decide whether this goes into the revision waiting for the FPGAs or into the next one. Do it on a branch, so
    11b8314 stays orderable. The forced-PWM resistors (section 2a) can go into the order revision on their own.

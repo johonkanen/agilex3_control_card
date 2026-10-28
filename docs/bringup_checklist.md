@@ -34,15 +34,17 @@ order and stop at the first failure. Record every measurement in the log at the 
 
 | Rail | Source | Nominal | Probe on | Comes up |
 |---|---|---|---|---|
-| +5V | J1 pin 1 | 5.0 V | C14/C15 pin 1 | input |
+| +5V | J1 pin 1 | 5.0 V | C15 pin 1 | input |
 | +3V3A | U6 TLV75533 from +5V, always enabled | 3.30 V | U6 pin 5, C13 pin 1 | immediately with +5V |
-| +0V75 (core) | U2 AP61302 buck, EN tied to +5V | 0.753 V (0.6 V × (1 + R1 51k / R2 200k)) | C2/C3 pin 1, L1 pad 2 | 1st |
-| PG_0V75 | U2 pin 6, 100k pull-up R5 to +5V | → ~5 V when the core rail is good | R5 pin 2 | after +0V75 |
+| EN_0V75 | R46 100k from +5V, R47 200k to GND | 3.33 V (below VIN − 0.2 V: forced PWM) | R46 pin 2 | immediately with +5V |
+| +0V75 (core) | U2 AP61302 buck, EN = EN_0V75 | 0.753 V (0.6 V × (1 + R1 51k / R2 200k)) | C2/C3 pin 1, L1 pad 2 | 1st |
+| PG_0V75 | U2 pin 6, R5 100k to +5V, R48 200k to GND | → 3.33 V when the core rail is good | R5 pin 2 | after +0V75 |
 | +1V8 | U3 AP61102 buck, EN = PG_0V75 | 1.800 V (0.6 × (1 + 200k/100k)) | C6 pin 1, L2 pad 2 | 2nd |
-| PG_1V8 | U3 pin 6, 100k pull-up R8 to +5V | → ~5 V | R8 pin 2 | after +1V8 |
+| PG_1V8 | U3 pin 6, R8 100k to +5V, R49 200k to GND | → 3.33 V | R8 pin 2 | after +1V8 |
 | +3V3 | U4 AP61102 buck, EN = PG_1V8 | 3.31 V (0.6 × (1 + 200k/44.2k)) | C9 pin 1, L3 pad 2 | 3rd |
-| +1V2 | U5 TLV75512 from +3V3 | 1.20 V | U5 pin 5, C11 pin 1 | with +3V3 |
-| +1V8_HR (banks 6C/6D, HyperRAM, oscillator) | U16 TLV75518 from +3V3 | 1.80 V | U16 pin 5, C75 pin 1 | with +3V3 |
+| PG_3V3 | U4 pin 6, R50 100k to +5V, R51 200k to GND | → 3.33 V | R50 pin 2 | after +3V3 |
+| +1V2 | U17 AP61102 buck from +5V, EN = PG_3V3 | 1.200 V (0.6 × (1 + 200k/200k)) | C82/C11 pin 1, L4 pad 2 | 4th, with +1V8_HR |
+| +1V8_HR (banks 6C/6D, HyperRAM, oscillator) | U18 AP61102 buck from +5V, EN = PG_3V3 | 1.800 V (0.6 × (1 + 200k/100k)) | C85/C75 pin 1, L5 pad 2 | 4th, with +1V2 |
 | +0V75_PLLDIG | FB1 + C65/C66 from +0V75 | ≈0.75 V | FB1 pin 2 | with +0V75 |
 | +1V8_PLL, +1V8_ADC | FB2, FB3 from +1V8 | ≈1.80 V | FB2 pin 2, FB3 pin 2 | with +1V8 |
 | +1V2_RCORE | FB4 from +1V2 | ≈1.20 V | FB4 pin 2 | with +1V2 |
@@ -51,6 +53,9 @@ order and stop at the first failure. Record every measurement in the log at the 
 - **Core regulator sense:** the core regulator senses the voltage at the FPGA balls (VCC_SENSE_P at AH33, VCC_SENSE_N at
   AL33), through R1/R2 (51k/200k). C77 (100 pF C0G) across R1 is the feed-forward capacitor the AP61302 requires. R3 (100 Ω)
   and R4 (10 Ω) give a local fallback path if the sense lines are open.
+- **Forced PWM:** every buck's EN sits at about 3.33 V, below VIN − 200 mV, which forces PWM at any load (AP61x0x
+  datasheet, Enable section). EN above VIN − 200 mV would select PFM at light load. To compare the modes, remove the
+  200k resistor to GND on that buck's enable net (R47, R48, R49 or R51; R51 switches both U17 and U18).
 - **Tolerances:** use ±3 % as the screening limit. The exact Agilex 3 limits are in the Device Data Sheet (848370); check
   VCC/VCCP (0.75 V for −7S) against it before running heavy designs.
 
@@ -65,28 +70,27 @@ order and stop at the first failure. Record every measurement in the log at the 
   | Ref | Package | Side | Pin 1 at (x, y mm) | Pin-1 corner, top view |
   |---|---|---|---|---|
   | U7 flash, U9 HyperRAM | BGA-24 | Top | (95.69, 100.75), (86.55, 100.75) | lower-left |
-  | U4 | SOT-563 | Top | (104.94, 114.60) | lower-left |
   | U10 | TSSOP-16 | Top | (80.58, 118.14) | upper-right |
   | U11 | SOT-23-5 | Top | (76.45, 114.21) | upper-left |
   | U12 | UQFN-8 | Top | (78.50, 108.28) | upper-right |
   | D1, D2 | side-view RGB LED | Top | pad 1 on the left; lens must face the north board edge (away from J1) | middle-left |
-  | U2, U3 | SOT-563 | Bottom | (104.78, 113.23), (76.31, 102.28) | lower-left |
-  | U5, U6 | SOT-23-5 | Bottom | (106.44, 122.35), (85.80, 122.48) | upper-right |
+  | U2, U4, U17 | SOT-563 | Bottom | (105.11, 111.36), (105.22, 116.35), (104.14, 123.68) | upper-right |
+  | U3, U18 | SOT-563 | Bottom | (76.31, 102.28), (81.13, 98.73) | lower-left |
+  | U6 | SOT-23-5 | Bottom | (85.80, 122.48) | upper-right |
   | U8 | UQFN-16 | Bottom | (101.01, 102.25) | upper-right |
   | U13 | TSSOP-16 | Bottom | (76.03, 118.34) | upper-left |
   | U14 | SOT-23-5 | Bottom | (78.34, 116.01) | lower-right |
   | U15 | UQFN-8 | Bottom | (80.90, 112.67) | upper-left |
-  | U16 | SOT-23-5 | Bottom | (80.66, 97.90) | lower-left |
-  | X1 | 3225 oscillator | Bottom | (92.34, 96.17) | upper-left |
+  | X1 | 3225 oscillator | Bottom | (93.07, 96.11) | upper-left |
 
   Compare against the board in KiCad (`hardware/control_card.kicad_pcb`, View → Flip Board for the bottom side). A
   rotated regulator or level shifter can destroy the FPGA, so this check is mandatory.
 - [ ] **Solder joints:**
-  - no bridges on the TSSOPs (U10, U13), the SOT-563 bucks (U2–U4) or the UQFNs (U8, U12, U15);
+  - no bridges on the TSSOPs (U10, U13), the SOT-563 bucks (U2–U4, U17, U18) or the UQFNs (U8, U12, U15);
   - no tombstoned 0201s under the BGA (bottom side, C21–C46, C66–C76);
   - BGAs sit flat. If JLC supplied X-ray images of U1/U7/U9, look for voids and bridges.
 - [ ] **Hand-soldered J1 and J2:** no bridges between the 1.27 mm-pitch J1 pins. J1 pin 1 is the square pad.
-- [ ] **Bottom-side parts present** (109 of the 146 assembled parts are on the bottom). Compare with the 3D renders
+- [ ] **Bottom-side parts present** (121 of the 161 assembled parts are on the bottom). Compare with the 3D renders
   `docs/img/board_top.png` and `docs/img/board_bottom.png` (final design; U1, U7 and U9 show as bare pads because their
   footprints have no 3D model, and J1/J2 are drawn although they're soldered by hand).
 
@@ -99,7 +103,8 @@ charge from the meter. Measure every rail in the rail table.
   look for solder bridges).
 - [ ] **Compare the boards with each other.** A rail that is clearly lower on one board than on the others points to an
   assembly fault. +0V75 is expected to be the lowest (FPGA core); the others normally read hundreds of Ω or more.
-- [ ] **Rail to rail:** +5V to +3V3, +3V3 to +1V8, +1V8 to +0V75 and +3V3 to +3V3A are not shorted to each other.
+- [ ] **Rail to rail:** +5V to +3V3, +3V3 to +1V8, +1V8 to +0V75, +1V8 to +1V8_HR, +1V8 to +1V2 and +3V3 to +3V3A are
+  not shorted to each other.
 - [ ] **Configuration straps** (power off, to GND or to +1V8):
   - MSEL2 (R13 4.7 k to GND fitted, R14 pull-up DNP);
   - MSEL1 (R12 4.7 k to +1V8);
@@ -117,14 +122,21 @@ the power board yet.
     isn't documented here; record it and compare between boards.
   - If the supply goes into current limit, stop and go back to section 2.
 - [ ] **Measure every rail** in the rail table. All within ±3 % of nominal.
-- [ ] **Power-good chain:** PG_0V75 (R5 pin 2) and PG_1V8 (R8 pin 2) both high, ≈5 V.
-- [ ] **Sequence, with a scope** (4 channels: +0V75, +1V8, +3V3, +1V8_HR; trigger on +5V or on +0V75 rising):
-  - order is +0V75 → +1V8 → +3V3, then +1V2/+1V8_HR. Each rail reaches about 90 % before the next one starts;
+- [ ] **Enable and power-good chain:** EN_0V75 (R46 pin 2), PG_0V75 (R5 pin 2), PG_1V8 (R8 pin 2) and PG_3V3 (R50
+  pin 2) all at ≈3.33 V. A net at ≈5 V has lost its 200k to GND, so that buck runs in PFM.
+- [ ] **Sequence, with a scope** (4 channels: +0V75, +1V8, +3V3, then +1V2 and +1V8_HR in a second capture; trigger on +5V or on +0V75 rising):
+  - order is +0V75 → +1V8 → +3V3, then +1V2 and +1V8_HR together. Each rail reaches about 90 % before the next one starts;
   - every ramp is monotonic, with no dips or restarts;
   - +1V8 reaches its level within 10 ms (AS normal mode requires VCCIO_SDM within 10 ms; see `docs/agilex3_requirements.md` section 3).
 - [ ] **Ripple:** under 1 % peak-to-peak on +0V75 and +1V8 at no load (20 MHz scope bandwidth, short ground spring at the
   output capacitor).
-- [ ] **Raise the limit to 1 A.** Nothing gets hot: touch test or thermal camera on U2–U4, U5, U6, U16 and U1.
+- [ ] **Forced PWM:** at no load, each switch node (L1, L2, L3, L4, L5 pad 1) switches continuously at about 2.2 MHz
+  (the core buck near 2.1 MHz, at its minimum on-time), with no bursts or gaps. Bursts mean that buck is in PFM: check
+  its EN voltage.
+- [ ] **Ripple on +1V2 and +1V8_HR**, the two rails that were LDOs before: record peak-to-peak at no load and after
+  configuration. Compare with the VCCRCORE, VCCIO_PIO and VCCIO_HVIO limits in the Agilex 3 data sheet. Optionally
+  remove R51 on one board to compare PFM.
+- [ ] **Raise the limit to 1 A.** Nothing gets hot: touch test or thermal camera on U2–U4, U17, U18, U6 and U1.
 
 ## 4. Clock and static levels
 
@@ -232,7 +244,7 @@ Check the generated `.qsf` for the exact assignment names your Quartus version w
 - [ ] **Full-load design:** run the largest planned design, or a toggling stress design.
   - Measure the +0V75 current: the 5 V input current × 5 V × efficiency / 0.75 V, or measure across L1.
   - Compare with the Power and Thermal Calculator estimate. The core regulator AP61302 is rated 3 A; this is an open item.
-- [ ] **Temperatures** after 10 minutes: U1, U2–U4 and the LDOs stay within their ratings (thermal camera or
+- [ ] **Temperatures** after 10 minutes: U1, the bucks U2–U4, U17, U18 and the analog LDO U6 stay within their ratings (thermal camera or
   thermocouple).
 
 ## 12. Result log
