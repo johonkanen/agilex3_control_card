@@ -8029,7 +8029,7 @@
 				(justify left)
 			)
 		)
-		(property "LCSC" "C25741"
+		(property "LCSC" "C270364"
 			(at 254 152.4 0)
 			(hide yes)
 			(show_name no)
@@ -8041,7 +8041,7 @@
 				(justify left)
 			)
 		)
-		(property "MPN" "0402WGF1003TCE"
+		(property "MPN" "0201WMF1003TEE"
 			(at 254 152.4 0)
 			(hide yes)
 			(show_name no)
