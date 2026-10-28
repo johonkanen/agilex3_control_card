@@ -410,7 +410,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C270364"
+		(property "LCSC" "C106224"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -423,7 +423,7 @@
 				)
 			)
 		)
-		(property "MPN" "0201WMF1003TEE"
+		(property "MPN" "RC0201FR-07100KL"
 			(at 0 0 270)
 			(unlocked yes)
 			(layer "F.Fab")
