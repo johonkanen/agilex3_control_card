@@ -1,0 +1,1 @@
+control_card	hardware/control_card.kicad_pcb
